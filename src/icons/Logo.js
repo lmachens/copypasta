@@ -9,7 +9,6 @@ const Text = styled.text`
   fill: #a9dc76;
   font-size: 62px;
   letter-spacing: 0.01em;
-  font-family: RobotoMono-Regular, Roboto Mono;
 `;
 
 const PastaText = styled.tspan`
@@ -17,7 +16,6 @@ const PastaText = styled.tspan`
 `;
 
 const HelloPastersText = styled.text`
-  font-family: RobotoMono-Regular, Roboto Mono;
   fill: #ffd866;
   font-size: 12px;
   letter-spacing: 0.02em;
