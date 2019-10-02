@@ -10,6 +10,6 @@ const TextArea = styled.textarea`
   padding: 20px;
 `;
 
-export default function PasteArea() {
-  return <TextArea placeholder="text goes here..." autoFocus />;
+export default function PasteArea(props) {
+  return <TextArea placeholder="text goes here..." autoFocus {...props} />;
 }

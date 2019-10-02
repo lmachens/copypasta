@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import { fadeIn } from "../utils/animations";
 
 const Fork = styled.path`
   fill: #505050;
@@ -9,6 +10,7 @@ const Text = styled.text`
   fill: #a9dc76;
   font-size: 62px;
   letter-spacing: 0.01em;
+  animation: ${fadeIn} 3s ease-out 1 both;
 `;
 
 const PastaText = styled.tspan`
@@ -19,15 +21,18 @@ const HelloPastersText = styled.text`
   fill: #ffd866;
   font-size: 12px;
   letter-spacing: 0.02em;
+  animation: ${fadeIn} 3s ease-out 1 both;
+  animation-delay: 1s;
 `;
 
-export default function Logo() {
+export default function Logo(props) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       width="300.775"
       height="327.365"
       viewBox="0 0 300.775 327.365"
+      {...props}
     >
       <g transform="translate(-760.807 -114.635)">
         <Fork

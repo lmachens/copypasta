@@ -8,8 +8,13 @@ const Button = styled.button`
   font-size: 22px;
   color: #505050;
   padding: 4px 15px;
+
+  &:disabled {
+    color: #505050;
+    background: #909090;
+  }
 `;
 
-export default function SubmitButton() {
-  return <Button>paste it!</Button>;
+export default function SubmitButton(props) {
+  return <Button {...props}>paste it!</Button>;
 }
