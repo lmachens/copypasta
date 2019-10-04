@@ -1,4 +1,4 @@
-const apiEndpoint = "http://localhost:8080";
+const apiEndpoint = process.env.REACT_APP_API_URL || "http://localhost:8080";
 
 export function getPaste(pasteId) {
   return fetch(`${apiEndpoint}/pastes/${pasteId}`, {
