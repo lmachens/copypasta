@@ -35,7 +35,7 @@ export default function Paste({ match }) {
           <div>☠️☠️☠️</div>Can not get paste! Please try again.
         </Error>
       )}
-      <PasteArea>{paste}</PasteArea>
+      <PasteArea>{paste.value}</PasteArea>
     </div>
   );
 }

@@ -38,8 +38,10 @@ export default function Home() {
     try {
       setError(false);
       setLoading(true);
-      const newPasteId = await postPaste(paste);
-      setRedirectToPaste(newPasteId);
+      const newPaste = await postPaste({
+        value: paste
+      });
+      setRedirectToPaste(newPaste.id);
     } catch (error) {
       console.error(error);
       setError(true);
