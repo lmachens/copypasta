@@ -7,7 +7,6 @@ const app = express();
 const port = 4000;
 
 let id = 1;
-const key = "test";
 
 app.use(cors());
 app.use(express.json());
@@ -16,25 +15,27 @@ app.get("/", function(request, respond) {
   respond.send("Hello World!");
 });
 
-app.post("/pastes", function(request, respond, next) {
-  const paste = request.body.value;
-  console.log(paste);
-  console.log(id);
-  newId = id += 1;
-  const newEntry = { data: paste, key: newId };
-  console.log(newEntry);
+app.post("/pastes", async function(request, respond, next) {
   console.log("POST");
   let body = "";
   request.on("data", function(data) {
     body += data;
   });
   request.on("end", async function() {
-    await set(id, body);
+    await set("1234", path, body);
+    response.end(`Set ${path}`);
   });
 });
 
-app.get(`/pastes/${key}`, function(request, respond, next) {
-  respond.send(key);
+app.get("/pastes/:id", async function(request, respond, next) {
+  console.log("Request ID:" + request.params.id);
+  const id = await Number(request.params.id);
+  const keyNew = await get(id);
+  console.log(keyNew);
+
+  respond.write(JSON.stringify(keyNew.pasta));
+
+  respond.end();
 });
 
 initDb().then(() => {

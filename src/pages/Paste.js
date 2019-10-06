@@ -12,7 +12,7 @@ export default function Paste({ match }) {
   const [paste, setPaste] = React.useState("");
   const [loading, setLoading] = React.useState(true);
   const [error, setError] = React.useState(false);
-
+  console.log(match.params.pasteId);
   React.useEffect(() => {
     getPaste(match.params.pasteId)
       .then(paste => {
