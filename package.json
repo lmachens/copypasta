@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "mongodb": "^3.3.2",
     "prettier": "^1.18.2",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",
@@ -17,7 +20,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
-    "build-storybook": "build-storybook -s public"
+    "build-storybook": "build-storybook -s public",
+    "server": "nodemon src/server.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -40,6 +44,7 @@
     "@storybook/addons": "^5.2.1",
     "@storybook/react": "^5.2.1",
     "eslint": "^6.5.1",
-    "eslint-plugin-react": "^7.15.1"
+    "eslint-plugin-react": "^7.15.1",
+    "nodemon": "^1.19.3"
   }
 }
