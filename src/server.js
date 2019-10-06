@@ -16,15 +16,11 @@ app.get("/", function(request, respond) {
 });
 
 app.post("/pastes", async function(request, respond, next) {
-  console.log("POST");
-  let body = "";
-  request.on("data", function(data) {
-    body += data;
-  });
-  request.on("end", async function() {
-    await set("1234", path, body);
-    response.end(`Set ${path}`);
-  });
+  const paste = request.body.value;
+  newId = id += 1;
+  console.log("set pasteCollection");
+  await set(id, paste);
+  respond.end("set");
 });
 
 app.get("/pastes/:id", async function(request, respond, next) {
