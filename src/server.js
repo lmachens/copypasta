@@ -9,7 +9,7 @@ const port = 8080;
 
 api.get("/pastes/:id", async (request, response) => {
   try {
-    response.writeHead(200, { "Content-Type": "text/json" });
+    response.writeHead(200, { "Content-Type": "application/json" });
     const pasteId = await get(request.params.id);
     return response.end(pasteId);
   } catch (error) {
