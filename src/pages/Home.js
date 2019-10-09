@@ -59,7 +59,7 @@ export default function Home() {
       <SubmitButton onClick={handleClick} disabled={!paste || loading} />
       {loading && <Loading />}
       {error && (
-        <Error>
+        <Error onClose={() => setError(false)}>
           <div>☠️☠️☠️</div>Can not post paste! Please try again.
         </Error>
       )}
