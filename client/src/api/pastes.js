@@ -1,7 +1,5 @@
-const apiEndpoint = process.env.REACT_APP_API_URL || "http://localhost:8080";
-
 export function getPaste(pasteId) {
-  return fetch(`${apiEndpoint}/pastes/${pasteId}`, {
+  return fetch(`/api/pastes/${pasteId}`, {
     method: "GET"
   })
     .then(response => {
@@ -14,7 +12,7 @@ export function getPaste(pasteId) {
 }
 
 export function postPaste(paste) {
-  return fetch(`${apiEndpoint}/pastes`, {
+  return fetch(`/api/pastes`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json"
