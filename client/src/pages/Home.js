@@ -37,7 +37,6 @@ export default function Home() {
     } catch (error) {
       console.error(error);
       setError(true);
-    } finally {
       setLoading(false);
     }
   }

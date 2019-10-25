@@ -41,7 +41,7 @@ export default function Error({ children, onClose }) {
     return () => {
       clearTimeout(timeout);
     };
-  }, []);
+  }, [onClose]);
 
   return <Container onClick={onClose}>{children}</Container>;
 }
