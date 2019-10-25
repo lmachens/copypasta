@@ -1,13 +1,12 @@
 const express = require("express");
-const { getCollection } = require("./database");
+const { getCollection } = require("./lib/database");
 const { ObjectID } = require("mongodb");
-const cors = require("cors");
-const api = express();
-api.use(cors());
+const path = require("path");
 
+const app = express();
 const port = 8080;
 
-api.get("/pastes/:id", async (request, response) => {
+app.get("/api/pastes/:id", async (request, response) => {
   try {
     response.writeHead(200, { "Content-Type": "application/json" });
     const pasteId = await get(request.params.id);
@@ -16,7 +15,7 @@ api.get("/pastes/:id", async (request, response) => {
     return response.end("Error");
   }
 });
-api.post("/pastes", async (request, response) => {
+app.post("/api/pastes", async (request, response) => {
   try {
     let body = "";
     request.on("data", function(data) {
@@ -32,6 +31,16 @@ api.post("/pastes", async (request, response) => {
   }
 });
 
+if (process.env.NODE_ENV === "production") {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, "client/build")));
+
+  // Handle React routing, return all requests to React app
+  app.get("*", function(req, res) {
+    res.sendFile(path.join(__dirname, "../client/build", "index.html"));
+  });
+}
+
 async function set(value) {
   const pastesCollection = await getCollection();
   const result = await pastesCollection.insertOne({ paste: value });
@@ -40,9 +49,10 @@ async function set(value) {
 
 async function get(key) {
   const pastesCollection = await getCollection();
-  // {_id: blabla, paste:caca}
   const pasteId = new ObjectID.createFromHexString(key);
   const paste = await pastesCollection.findOne({ _id: pasteId });
   return paste.paste;
 }
-api.listen(port, () => {});
+app.listen(port, () => {
+  console.log(`Server is running on http://localhost:${port}`);
+});
