@@ -32,6 +32,9 @@ const Container = styled.div`
 
 export default function Error({ children, onClose }) {
   React.useEffect(() => {
+    if (!onClose) {
+      return;
+    }
     const timeout = setTimeout(() => {
       onClose();
     }, 5000);
