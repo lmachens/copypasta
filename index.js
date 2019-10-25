@@ -6,27 +6,25 @@ const path = require("path");
 const app = express();
 const port = 8080;
 
+// Parse application/json for all request
+app.use(express.json());
+
 app.get("/api/pastes/:id", async (request, response) => {
   try {
-    response.writeHead(200, { "Content-Type": "application/json" });
     const pasteId = await get(request.params.id);
-    return response.end(pasteId);
+    return response.json(pasteId);
   } catch (error) {
+    console.error(error);
     return response.end("Error");
   }
 });
+
 app.post("/api/pastes", async (request, response) => {
   try {
-    let body = "";
-    request.on("data", function(data) {
-      body += data;
-    });
-    request.on("end", async function() {
-      response.writeHead(200, { "Content-Type": "application/json" });
-      const id = await set(body);
-      return response.end(JSON.stringify({ id: id }));
-    });
+    const id = await set(request.body);
+    return response.json({ id: id });
   } catch (error) {
+    console.error(error);
     response.end("Error");
   }
 });
