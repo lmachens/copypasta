@@ -12,6 +12,12 @@ cd client
 npm install
 ```
 
+Add environment variables in .env file. You can copy the .env.example and update the variables.
+
+```
+cp .env.example .env
+```
+
 To start the server and client at the same time:
 
 ```
