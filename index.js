@@ -18,7 +18,7 @@ app.get("/api/pastes/:id", async (request, response) => {
     return response.json(paste);
   } catch (error) {
     console.error(error);
-    return response.end("Error");
+    return response.status(404).end("Error");
   }
 });
 
@@ -29,7 +29,7 @@ app.post("/api/pastes", async (request, response) => {
     return response.json({ id: id });
   } catch (error) {
     console.error(error);
-    response.end("Error");
+    response.status(400).end("Error");
   }
 });
 
