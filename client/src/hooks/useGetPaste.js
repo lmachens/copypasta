@@ -1,12 +1,12 @@
 import React from "react";
 import { getPaste } from "../api/pastes";
 
-export default function usePaste(pasteId) {
+export default function useGetPaste(pasteId) {
   const [paste, setPaste] = React.useState(null);
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(true);
 
-  async function doFetch() {
+  async function doGet() {
     try {
       setLoading(true);
       setError(false);
@@ -21,8 +21,8 @@ export default function usePaste(pasteId) {
   }
 
   React.useEffect(() => {
-    doFetch();
+    doGet();
   }, [pasteId]);
 
-  return [{ paste, error, loading }, doFetch];
+  return [{ paste, error, loading }, doGet];
 }
