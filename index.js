@@ -1,19 +1,19 @@
 const express = require("express");
-const { getCollection, initDatabase } = require("./lib/database");
-const { ObjectID } = require("mongodb");
 const path = require("path");
+const { initDatabase } = require("./lib/database");
+const { getPaste, setPaste } = require("./lib/pastes");
 
-const app = express();
 const port = 8080;
 const dbName = "copy-pasta";
-const collectionName = "pastes";
+
+const app = express();
 
 // Parse application/json for all request
 app.use(express.json());
 
 app.get("/api/pastes/:id", async (request, response) => {
   try {
-    const pasteId = await get(request.params.id);
+    const pasteId = await getPaste(request.params.id);
     return response.json(pasteId);
   } catch (error) {
     console.error(error);
@@ -23,7 +23,7 @@ app.get("/api/pastes/:id", async (request, response) => {
 
 app.post("/api/pastes", async (request, response) => {
   try {
-    const id = await set(request.body);
+    const id = await setPaste(request.body);
     return response.json({ id: id });
   } catch (error) {
     console.error(error);
@@ -39,19 +39,6 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", function(req, res) {
     res.sendFile(path.join(__dirname, "../client/build", "index.html"));
   });
-}
-
-async function set(value) {
-  const pastesCollection = await getCollection(collectionName);
-  const result = await pastesCollection.insertOne({ paste: value });
-  return result.insertedId.toHexString();
-}
-
-async function get(key) {
-  const pastesCollection = await getCollection(collectionName);
-  const pasteId = new ObjectID.createFromHexString(key);
-  const paste = await pastesCollection.findOne({ _id: pasteId });
-  return paste.paste;
 }
 
 initDatabase(dbName).then(() => {
