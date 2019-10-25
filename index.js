@@ -13,8 +13,9 @@ app.use(express.json());
 
 app.get("/api/pastes/:id", async (request, response) => {
   try {
-    const pasteId = await getPaste(request.params.id);
-    return response.json(pasteId);
+    const pasteId = request.params.id;
+    const paste = await getPaste(pasteId);
+    return response.json(paste);
   } catch (error) {
     console.error(error);
     return response.end("Error");
