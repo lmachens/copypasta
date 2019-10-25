@@ -2,7 +2,11 @@
   "name": "copypasta",
   "version": 2,
   "builds": [
-    { "src": "client/package.json", "use": "@now/static-build" },
+    {
+      "src": "client/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    },
     { "src": "index.js", "use": "@now/node-server" }
   ],
   "routes": [
