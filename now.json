@@ -2,22 +2,45 @@
   "name": "copypasta",
   "version": 2,
   "builds": [
-    { "src": "client/build/**/*", "use": "@now/static" },
+    {
+      "src": "client/package.json",
+      "use": "@now/static-build",
+      "config": { "distDir": "build" }
+    },
     { "src": "index.js", "use": "@now/node-server" }
   ],
   "routes": [
     {
       "src": "/static/(.*)",
-      "dest": "/client/build/static/$1"
+      "dest": "/client/static/$1"
+    },
+    {
+      "src": "/api/(.*)",
+      "dest": "/index.js"
+    },
+    {
+      "src": "/logo192.png",
+      "dest": "/client/logo192.png"
+    },
+    {
+      "src": "/logo512.png",
+      "dest": "/client/logo512.png"
+    },
+    {
+      "src": "/favicon.ico",
+      "dest": "/client/favicon.ico"
+    },
+    {
+      "src": "/manifest.json",
+      "dest": "/client/manifest.json"
     },
     {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "/client/index.html"
     }
   ],
   "env": {
     "DB_URL": "@db_url",
-    "DB_NAME": "@db_name",
-    "NODE_ENV": "production"
+    "DB_NAME": "@db_name"
   }
 }

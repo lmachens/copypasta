@@ -9,7 +9,8 @@
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
     "dev:server": "npm run build && cd .. && npm start",
     "server": "nodemon index.js",
-    "start": "node index.js"
+    "start": "node index.js",
+    "heroku-prebuild": "cd client && npm ci --only=prod"
   },
   "repository": {
     "type": "git",
