@@ -1,4 +1,3 @@
-import React from "react";
 import styled from "styled-components";
 import { keyframes } from "styled-components";
 
@@ -16,7 +15,7 @@ export const flyFromRight = keyframes`
 }
 `;
 
-const Container = styled.div`
+const Alert = styled.div`
   border: 5px solid red;
   border-radius: 15px;
   box-shadow: 0px 5px 0px #b4b4b4;
@@ -30,18 +29,4 @@ const Container = styled.div`
   animation: ${flyFromRight} 5s ease-in-out;
 `;
 
-export default function Error({ children, onClose }) {
-  React.useEffect(() => {
-    if (!onClose) {
-      return;
-    }
-    const timeout = setTimeout(() => {
-      onClose();
-    }, 5000);
-    return () => {
-      clearTimeout(timeout);
-    };
-  }, [onClose]);
-
-  return <Container onClick={onClose}>{children}</Container>;
-}
+export default Alert;

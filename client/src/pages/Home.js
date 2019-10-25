@@ -3,56 +3,38 @@ import Logo from "../icons/Logo";
 import PasteArea from "../components/PasteArea";
 import styled from "styled-components";
 import SubmitButton from "../components/SubmitButton";
-import { postPaste } from "../api/pastes";
 import Loading from "../components/Loading";
-import Error from "../components/Error";
+import Alert from "../components/Alert";
 import { Redirect } from "react-router-dom";
 import FullContainer from "../components/FullContainer";
+import usePostPaste from "../hooks/usePostPaste";
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
 `;
 
 export default function Home() {
-  const [paste, setPaste] = React.useState("");
-  const [loading, setLoading] = React.useState(false);
-  const [error, setError] = React.useState(false);
-  const [redirectToPaste, setRedirectToPaste] = React.useState(null);
+  const [pasteValue, setPasteValue] = React.useState("");
+  const [{ pasteId, error, loading }, doPost] = usePostPaste();
 
-  function handleChange(event) {
-    setPaste(event.target.value);
-  }
-
-  async function handleClick() {
-    if (!paste) {
-      return;
-    }
-    try {
-      setError(false);
-      setLoading(true);
-      const newPaste = await postPaste({
-        value: paste
-      });
-      setRedirectToPaste(newPaste.id);
-    } catch (error) {
-      console.error(error);
-      setError(true);
-      setLoading(false);
-    }
-  }
-
-  if (redirectToPaste) return <Redirect to={`/${redirectToPaste}`} />;
+  if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
   return (
     <FullContainer>
       <Logo />
-      <PasteAreaStyled value={paste} onChange={handleChange} />
-      <SubmitButton onClick={handleClick} disabled={!paste || loading} />
+      <PasteAreaStyled
+        value={pasteValue}
+        onChange={event => setPasteValue(event.target.value)}
+      />
+      <SubmitButton
+        onClick={() => doPost(pasteValue)}
+        disabled={!pasteValue || loading}
+      />
       {loading && <Loading />}
       {error && (
-        <Error onClose={() => setError(false)}>
+        <Alert>
           <div>☠️☠️☠️</div>Can not post paste! Please try again.
-        </Error>
+        </Alert>
       )}
     </FullContainer>
   );

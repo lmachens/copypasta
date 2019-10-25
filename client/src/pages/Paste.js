@@ -1,9 +1,9 @@
 import React from "react";
 import Loading from "../components/Loading";
-import Error from "../components/Error";
+import Alert from "../components/Alert";
 import styled from "styled-components";
 import DateTime from "../components/DateTime";
-import usePaste from "../hooks/usePaste";
+import useGetPaste from "../hooks/useGetPaste";
 import Button from "../components/Button";
 import FullContainer from "../components/FullContainer";
 
@@ -16,17 +16,17 @@ const CreatedAt = styled(DateTime)`
 `;
 
 export default function Paste({ match }) {
-  const [{ paste, error, loading }, doFetch] = usePaste(match.params.pasteId);
+  const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
 
   return (
     <FullContainer>
       {loading && <Loading />}
       {error && (
         <>
-          <Error>
+          <Alert>
             <div>☠️☠️☠️</div>Can not get paste!
-          </Error>
-          <Button onClick={doFetch}>Try again</Button>
+          </Alert>
+          <Button onClick={doGet}>Try again</Button>
         </>
       )}
       {paste && (
