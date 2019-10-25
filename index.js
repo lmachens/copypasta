@@ -1,10 +1,10 @@
+// Load environment variables from .env file
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
 const { initDatabase } = require("./lib/database");
 const { getPaste, setPaste } = require("./lib/pastes");
-
-const port = 8080;
-const dbName = "copy-pasta";
 
 const app = express();
 
@@ -42,10 +42,10 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-initDatabase(dbName).then(() => {
-  console.log(`Database ${dbName} is ready`);
+initDatabase(process.env.DB_URL, process.env.DB_NAME).then(() => {
+  console.log(`Database ${process.env.DB_NAME} is ready`);
 
-  app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
+  app.listen(process.env.PORT, () => {
+    console.log(`Server is running on http://localhost:${process.env.PORT}`);
   });
 });
