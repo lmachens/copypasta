@@ -1,0 +1,23 @@
+{
+  "name": "copypasta",
+  "version": 2,
+  "builds": [
+    { "src": "client/build/**/*", "use": "@now/static" },
+    { "src": "index.js", "use": "@now/node-server" }
+  ],
+  "routes": [
+    {
+      "src": "/static/(.*)",
+      "dest": "/client/build/static/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/index.js"
+    }
+  ],
+  "env": {
+    "DB_URL": "@db_url",
+    "DB_NAME": "@db_name",
+    "NODE_ENV": "production"
+  }
+}

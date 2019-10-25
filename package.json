@@ -5,8 +5,9 @@
   "main": "server.js",
   "scripts": {
     "client": "cd client && npm start",
+    "build": "cd client && npm run build",
     "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "dev:server": "cd client && npm run build && cd .. && npm start",
+    "dev:server": "npm run build && cd .. && npm start",
     "server": "nodemon index.js",
     "start": "node index.js"
   },
