@@ -5,8 +5,10 @@
   "main": "server.js",
   "scripts": {
     "client": "cd client && npm start",
-    "server": "nodemon server/index.js",
-    "start": "node server/index.js"
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
+    "dev:server": "cd client && npm run build && cd .. && npm start",
+    "server": "nodemon index.js",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -23,6 +25,7 @@
     "mongodb": "^3.3.2"
   },
   "devDependencies": {
+    "concurrently": "^5.0.0",
     "nodemon": "^1.19.3",
     "prettier": "^1.18.2"
   }
