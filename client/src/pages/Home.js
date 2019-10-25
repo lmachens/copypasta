@@ -7,15 +7,7 @@ import { postPaste } from "../api/pastes";
 import Loading from "../components/Loading";
 import Error from "../components/Error";
 import { Redirect } from "react-router-dom";
-
-const Container = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-`;
+import FullContainer from "../components/FullContainer";
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -53,7 +45,7 @@ export default function Home() {
   if (redirectToPaste) return <Redirect to={`/${redirectToPaste}`} />;
 
   return (
-    <Container>
+    <FullContainer>
       <Logo />
       <PasteAreaStyled value={paste} onChange={handleChange} />
       <SubmitButton onClick={handleClick} disabled={!paste || loading} />
@@ -63,6 +55,6 @@ export default function Home() {
           <div>☠️☠️☠️</div>Can not post paste! Please try again.
         </Error>
       )}
-    </Container>
+    </FullContainer>
   );
 }
