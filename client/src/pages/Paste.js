@@ -6,9 +6,14 @@ import DateTime from "../components/DateTime";
 import useGetPaste from "../hooks/useGetPaste";
 import Button from "../components/Button";
 import FullContainer from "../components/FullContainer";
+import Author from "../components/Author";
 
 const PasteArea = styled.div`
   margin: 20px;
+`;
+
+const Authors = styled.div`
+  color: grey;
 `;
 
 const CreatedAt = styled(DateTime)`
@@ -34,6 +39,7 @@ export default function Paste({ match }) {
           <CreatedAt date={new Date(paste.createdAt)}>
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
+          <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
         </>
       )}
