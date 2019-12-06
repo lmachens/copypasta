@@ -1,7 +1,6 @@
 import React from "react";
 import Loading from "../components/Loading";
 import Alert from "../components/Alert";
-import Confirmation from "../components/Confirmation";
 import styled from "styled-components";
 import DateTime from "../components/DateTime";
 import useGetPaste from "../hooks/useGetPaste";
@@ -47,9 +46,6 @@ export default function Paste({ match }) {
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
           <PasteArea onChange={copyURL()}>{paste.value}</PasteArea>
-          <Confirmation>
-            <div>🎉🎉🎉</div>URL copied to your clipboard!
-          </Confirmation>
         </>
       )}
     </FullContainer>
