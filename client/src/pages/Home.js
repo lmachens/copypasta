@@ -8,6 +8,7 @@ import Alert from "../components/Alert";
 import { Redirect } from "react-router-dom";
 import FullContainer from "../components/FullContainer";
 import usePostPaste from "../hooks/usePostPaste";
+import AuthorInput from "../components/AuthorInput";
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -22,6 +23,7 @@ export default function Home() {
   return (
     <FullContainer>
       <Logo />
+      <AuthorInput />
       <PasteAreaStyled
         value={pasteValue}
         onChange={event => setPasteValue(event.target.value)}
