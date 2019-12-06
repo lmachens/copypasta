@@ -11,6 +11,7 @@ export function getPaste(pasteId) {
     .then(response => response.json());
 }
 
+
 export function postPaste(paste) {
   return fetch(`/api/pastes`, {
     method: "POST",

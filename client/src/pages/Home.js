@@ -8,6 +8,7 @@ import Alert from "../components/Alert";
 import { Redirect } from "react-router-dom";
 import FullContainer from "../components/FullContainer";
 import usePostPaste from "../hooks/usePostPaste";
+import RandomButton from "../components/RandomButton";
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -30,6 +31,7 @@ export default function Home() {
         onClick={() => doPost(pasteValue)}
         disabled={!pasteValue || loading}
       />
+      <RandomButton onClick={() => {}} />
       {loading && <Loading />}
       {error && (
         <Alert>
