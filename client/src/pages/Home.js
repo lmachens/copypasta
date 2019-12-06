@@ -17,19 +17,23 @@ const PasteAreaStyled = styled(PasteArea)`
 export default function Home() {
   const [pasteValue, setPasteValue] = React.useState("");
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
+  const [authorName, setAuthorName] = React.useState("");
 
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
   return (
     <FullContainer>
       <Logo />
-      <AuthorInput />
+      <AuthorInput
+        value={authorName}
+        onChange={event => setAuthorName(event.target.value)}
+      />
       <PasteAreaStyled
         value={pasteValue}
         onChange={event => setPasteValue(event.target.value)}
       />
       <SubmitButton
-        onClick={() => doPost(pasteValue)}
+        onClick={() => doPost(pasteValue, authorName)}
         disabled={!pasteValue || loading}
       />
       {loading && <Loading />}

@@ -10,6 +10,6 @@ const Author = styled.input`
   margin-top: 10px;
 `;
 
-export default function AuthorInput() {
-  return <Author placeholder="enter your name" autoFocus />;
+export default function AuthorInput(props) {
+  return <Author placeholder="enter your name" autoFocus {...props} />;
 }
