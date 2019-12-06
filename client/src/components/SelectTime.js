@@ -17,6 +17,12 @@ export default function Selector({ onChange }) {
           <option id="1" value={0}>
             never
           </option>
+          <option id="5" value={60000}>
+            1 minute
+          </option>
+          <option id="6" value={180000}>
+            3 minute
+          </option>
           <option id="2" value={600000}>
             10 Minutes
           </option>
@@ -25,12 +31,6 @@ export default function Selector({ onChange }) {
           </option>
           <option id="4" value={21600000}>
             6 Hours
-          </option>
-          <option id="5" value={60000}>
-            1 minute
-          </option>
-          <option id="6" value={180000}>
-            3 minute
           </option>
         </SelectBox>
       </label>
