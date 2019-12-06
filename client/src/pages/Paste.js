@@ -1,6 +1,7 @@
 import React from "react";
 import Loading from "../components/Loading";
 import Alert from "../components/Alert";
+import Confirmation from "../components/Confirmation";
 import styled from "styled-components";
 import DateTime from "../components/DateTime";
 import useGetPaste from "../hooks/useGetPaste";
@@ -16,8 +17,8 @@ const CreatedAt = styled(DateTime)`
 `;
 
 function copyURL() {
-  const dummy = document.createElement("input"),
-    text = window.location.href;
+  const dummy = document.createElement("input");
+  const text = window.location.href;
 
   document.body.appendChild(dummy);
   dummy.value = text;
@@ -45,8 +46,10 @@ export default function Paste({ match }) {
           <CreatedAt date={new Date(paste.createdAt)}>
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
-          <PasteArea>{paste.value}</PasteArea>
-          <Button onClick={copyURL}>Copy URL to clipboard</Button>
+          <PasteArea onChange={copyURL()}>{paste.value}</PasteArea>
+          <Confirmation>
+            <div>🎉🎉🎉</div>URL copied to your clipboard!
+          </Confirmation>
         </>
       )}
     </FullContainer>
