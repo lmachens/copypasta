@@ -34,7 +34,7 @@ export default function Home() {
       />
       <SubmitButton
         onClick={() => doPost(pasteValue, authorName)}
-        disabled={!pasteValue || loading}
+        disabled={!pasteValue || !authorName || loading}
       />
       {loading && <Loading />}
       {error && (
