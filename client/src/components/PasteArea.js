@@ -11,5 +11,5 @@ const TextArea = styled.textarea`
 `;
 
 export default function PasteArea(props) {
-  return <TextArea placeholder="text goes here..." autoFocus {...props} />;
+  return <TextArea placeholder="text goes here..." {...props} />;
 }
