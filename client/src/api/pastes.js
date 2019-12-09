@@ -12,7 +12,7 @@ export function getPaste(pasteId) {
 }
 
 export function getRandomPaste() {
-  return fetch(`/random`, {
+  return fetch(`/api/pastes/random`, {
     method: "GET"
   })
     .then(response => {

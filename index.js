@@ -11,7 +11,7 @@ const app = express();
 // Parse application/json for all request
 app.use(express.json());
 
-app.get("/random", async (request, response) => {
+app.get("/api/pastes/random", async (request, response) => {
   try {
     const paste = await getRandomPaste();
     return response.json(paste);
