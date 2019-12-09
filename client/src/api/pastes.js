@@ -11,7 +11,7 @@ export function getPaste(pasteId) {
     .then(response => response.json());
 }
 
-export function getRandomPasteId() {
+export function getRandomPaste() {
   return fetch(`/random`, {
     method: "GET"
   })

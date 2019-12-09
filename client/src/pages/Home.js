@@ -10,7 +10,7 @@ import FullContainer from "../components/FullContainer";
 import usePostPaste from "../hooks/usePostPaste";
 import RandomButton from "../components/RandomButton";
 import { useHistory } from "react-router-dom";
-import { getRandomPasteId } from "../api/pastes";
+import { getRandomPaste } from "../api/pastes";
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -22,9 +22,9 @@ export default function Home() {
 
   const history = useHistory();
 
-  async function handleClick() {
-    const randomId = await getRandomPasteId();
-    history.push(`/${randomId._id}`);
+  async function handleRandomClick() {
+    const paste = await getRandomPaste();
+    history.push(`/${paste._id}`);
   }
 
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
@@ -40,7 +40,7 @@ export default function Home() {
         onClick={() => doPost(pasteValue)}
         disabled={!pasteValue || loading}
       />
-      <RandomButton onClick={handleClick} />
+      <RandomButton onClick={handleRandomClick} />
       {loading && <Loading />}
       {error && (
         <Alert>
