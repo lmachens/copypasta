@@ -10,7 +10,6 @@ export default function usePostPaste() {
     try {
       setLoading(true);
       setError(false);
-      console.log(time);
       const pasteId = await postPaste({ value: pasteValue, expireTime: time });
       setPasteId(pasteId);
     } catch (error) {

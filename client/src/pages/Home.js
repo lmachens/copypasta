@@ -28,16 +28,9 @@ export default function Home() {
         value={pasteValue}
         onChange={event => setPasteValue(event.target.value)}
       />
-      <Selector
-        onChange={event => {
-          setTime(event.target.value);
-        }}
-      ></Selector>
+      <Selector onChange={event => setTime(event.target.value)}></Selector>
       <SubmitButton
-        onClick={() => {
-          doPost(pasteValue, time);
-          console.log(time);
-        }}
+        onClick={() => doPost(pasteValue, time)}
         disabled={!pasteValue || loading}
       />
       {loading && <Loading />}

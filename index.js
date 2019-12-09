@@ -26,7 +26,6 @@ app.post("/api/pastes", async (request, response) => {
   try {
     const paste = request.body;
     const id = await setPaste(paste);
-    console.log(id);
     return response.json(id);
   } catch (error) {
     console.error(error);
