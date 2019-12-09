@@ -17,7 +17,7 @@ const PasteAreaStyled = styled(PasteArea)`
 export default function Home() {
   const [pasteValue, setPasteValue] = React.useState("");
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
-  const [time, setTime] = React.useState(0);
+  const [time, setTime] = React.useState(180000);
 
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
@@ -29,6 +29,7 @@ export default function Home() {
         onChange={event => setPasteValue(event.target.value)}
       />
       <Selector
+        value={time}
         onChange={event => setTime(parseInt(event.target.value))}
       ></Selector>
       <SubmitButton
