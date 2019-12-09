@@ -1,6 +1,7 @@
 import React from "react";
 import { getPaste } from "../api/pastes";
 
+
 export default function useGetPaste(pasteId) {
   const [paste, setPaste] = React.useState(null);
   const [error, setError] = React.useState(false);

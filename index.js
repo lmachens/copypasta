@@ -4,12 +4,26 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const { initDatabase } = require("./lib/database");
-const { getPaste, setPaste, createIndexes } = require("./lib/pastes");
+const {
+  getPaste,
+  setPaste,
+  getRandomPaste,
+  createIndexes
+} = require("./lib/pastes");
 
 const app = express();
 
 // Parse application/json for all request
 app.use(express.json());
+
+app.get("/api/pastes/random", async (request, response) => {
+  try {
+    const paste = await getRandomPaste();
+    return response.json(paste);
+  } catch (error) {
+    console.error(error);
+  }
+});
 
 app.get("/api/pastes/:id", async (request, response) => {
   try {

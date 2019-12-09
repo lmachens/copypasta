@@ -8,7 +8,7 @@ const SelectBox = styled.select`
   font-size: 14px;
 `;
 
-export default function Selector({ onChange, value }) {
+export default function SelectTime({ onChange, value }) {
   return (
     <div>
       <label>

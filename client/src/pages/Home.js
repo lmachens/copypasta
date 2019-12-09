@@ -5,14 +5,20 @@ import styled from "styled-components";
 import SubmitButton from "../components/SubmitButton";
 import Loading from "../components/Loading";
 import Alert from "../components/Alert";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import FullContainer from "../components/FullContainer";
 import usePostPaste from "../hooks/usePostPaste";
+import RandomButton from "../components/RandomButton";
+import { getRandomPaste } from "../api/pastes";
 import AuthorInput from "../components/AuthorInput";
-import Selector from "../components/SelectTime";
+import SelectTime from "../components/SelectTime";
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
+`;
+
+const RandomButtonStyled = styled(RandomButton)`
+  margin-top: 12px;
 `;
 
 export default function Home({ onPaste }) {
@@ -27,6 +33,13 @@ export default function Home({ onPaste }) {
     }
   }, [pasteId]);
 
+  const history = useHistory();
+
+  async function handleRandomClick() {
+    const paste = await getRandomPaste();
+    history.push(`/${paste._id}`);
+  }
+
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
   return (
@@ -40,14 +53,15 @@ export default function Home({ onPaste }) {
         value={pasteValue}
         onChange={event => setPasteValue(event.target.value)}
       />
-      <Selector
+      <SelectTime
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
-      ></Selector>
+      ></SelectTime>
       <SubmitButton
         onClick={() => doPost({ value: pasteValue, author, expireTime })}
         disabled={!pasteValue || !author || loading}
       />
+      <RandomButtonStyled onClick={handleRandomClick} />
       {loading && <Loading />}
       {error && (
         <Alert>
