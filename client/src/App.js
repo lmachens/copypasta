@@ -8,7 +8,7 @@ import Confirmation from "./components/Confirmation";
 function App() {
   const [showConfirmation, setShowConfirmation] = React.useState(false);
 
-  function isPasteCreator() {
+  function onPaste() {
     setShowConfirmation(true);
   }
 
@@ -21,11 +21,7 @@ function App() {
         </Confirmation>
       )}
       <Router>
-        <Route
-          exact
-          path="/"
-          component={() => <Home isPasteCreator={isPasteCreator} />}
-        />
+        <Route exact path="/" component={() => <Home onPaste={onPaste} />} />
         <Route path="/:pasteId" component={Paste} />
       </Router>
     </div>

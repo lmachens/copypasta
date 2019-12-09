@@ -13,13 +13,13 @@ const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
 `;
 
-export default function Home({ isPasteCreator }) {
+export default function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState("");
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
 
   async function handleClick() {
     await doPost(pasteValue);
-    isPasteCreator();
+    onPaste();
   }
 
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
