@@ -5,10 +5,20 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import Paste from "./pages/Paste";
 import Confirmation from "./components/Confirmation";
 
+function copyPasteURL(pasteId) {
+  const dummy = document.createElement("input");
+  document.body.appendChild(dummy);
+  dummy.value = `${window.location.origin}/${pasteId}`;
+  dummy.select();
+  document.execCommand("copy");
+  document.body.removeChild(dummy);
+}
+
 function App() {
   const [showConfirmation, setShowConfirmation] = React.useState(false);
 
-  function onPaste() {
+  function onPaste(pasteId) {
+    copyPasteURL(pasteId);
     setShowConfirmation(true);
   }
 

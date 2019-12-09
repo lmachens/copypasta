@@ -15,17 +15,6 @@ const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
 
-function copyURL() {
-  const dummy = document.createElement("input");
-  const text = window.location.href;
-
-  document.body.appendChild(dummy);
-  dummy.value = text;
-  dummy.select();
-  document.execCommand("copy");
-  document.body.removeChild(dummy);
-}
-
 export default function Paste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
 
@@ -45,7 +34,7 @@ export default function Paste({ match }) {
           <CreatedAt date={new Date(paste.createdAt)}>
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
-          <PasteArea onChange={copyURL()}>{paste.value}</PasteArea>
+          <PasteArea>{paste.value}</PasteArea>
         </>
       )}
     </FullContainer>

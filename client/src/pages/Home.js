@@ -19,8 +19,13 @@ export default function Home({ onPaste }) {
 
   async function handleClick() {
     await doPost(pasteValue);
-    onPaste();
   }
+
+  React.useEffect(() => {
+    if (pasteId) {
+      onPaste(pasteId);
+    }
+  }, [pasteId]);
 
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
