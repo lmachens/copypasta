@@ -4,7 +4,7 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const { initDatabase } = require("./lib/database");
-const { getPaste, setPaste, getRandomId } = require("./lib/pastes");
+const { getPaste, setPaste, getRandomPaste } = require("./lib/pastes");
 
 const app = express();
 
@@ -13,9 +13,7 @@ app.use(express.json());
 
 app.get("/random", async (request, response) => {
   try {
-    const randomId = await getRandomId();
-    const paste = await getPaste(randomId);
-    console.log(paste);
+    const paste = await getRandomPaste();
     return response.json(paste);
   } catch (error) {
     console.error(error);
