@@ -14,7 +14,7 @@ export default function Selector({ onChange, value }) {
       <label>
         When should your pasta expire?
         <SelectBox onChange={onChange} value={value}>
-          <option value={0}>never</option>
+          <option value={-1}>never</option>
           <option value={60000}>1 minute</option>
           <option value={180000}>3 minutes</option>
           <option value={600000}>10 minutes</option>

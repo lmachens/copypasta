@@ -17,7 +17,7 @@ const PasteAreaStyled = styled(PasteArea)`
 export default function Home() {
   const [pasteValue, setPasteValue] = React.useState("");
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
-  const [time, setTime] = React.useState(180000);
+  const [time, setTime] = React.useState(-1);
 
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
