@@ -17,6 +17,10 @@ const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
 `;
 
+const RandomButtonStyled = styled(RandomButton)`
+  margin-top: 12px;
+`;
+
 export default function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState("");
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
@@ -57,7 +61,7 @@ export default function Home({ onPaste }) {
         onClick={() => doPost({ value: pasteValue, author, expireTime })}
         disabled={!pasteValue || !author || loading}
       />
-      <RandomButton onClick={handleRandomClick} />
+      <RandomButtonStyled onClick={handleRandomClick} />
       {loading && <Loading />}
       {error && (
         <Alert>
