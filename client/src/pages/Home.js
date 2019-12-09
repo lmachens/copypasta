@@ -14,10 +14,16 @@ const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
 `;
 
-export default function Home() {
+export default function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState("");
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [time, setTime] = React.useState(-1);
+
+  React.useEffect(() => {
+    if (pasteId) {
+      onPaste(pasteId);
+    }
+  }, [pasteId]);
 
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
