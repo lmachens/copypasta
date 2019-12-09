@@ -12,10 +12,6 @@ const PasteArea = styled.div`
   margin: 20px;
 `;
 
-const Authors = styled.div`
-  color: grey;
-`;
-
 const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
