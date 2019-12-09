@@ -1,10 +1,10 @@
 import React from "react";
 import styled from "styled-components";
 
-const StyledDiv = styled.div`
+const Container = styled.div`
   color: #a0a0a0;
 `;
 
 export default function Author({ name }) {
-  return <StyledDiv>Author: {name}</StyledDiv>;
+  return <Container>Author: {name}</Container>;
 }
