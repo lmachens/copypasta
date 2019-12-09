@@ -4,7 +4,12 @@ require("dotenv").config();
 const express = require("express");
 const path = require("path");
 const { initDatabase } = require("./lib/database");
-const { getPaste, setPaste, getRandomPaste } = require("./lib/pastes");
+const {
+  getPaste,
+  setPaste,
+  getRandomPaste,
+  createIndexes
+} = require("./lib/pastes");
 
 const app = express();
 
@@ -35,6 +40,7 @@ app.post("/api/pastes", async (request, response) => {
   try {
     const paste = request.body;
     const id = await setPaste(paste);
+
     return response.json(id);
   } catch (error) {
     console.error(error);
@@ -52,8 +58,11 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-initDatabase(process.env.DB_URL, process.env.DB_NAME).then(() => {
+initDatabase(process.env.DB_URL, process.env.DB_NAME).then(async () => {
   console.log(`Database ${process.env.DB_NAME} is ready`);
+
+  await createIndexes();
+  console.log("Indexes created");
 
   app.listen(process.env.PORT, () => {
     console.log(`Server is running on http://localhost:${process.env.PORT}`);

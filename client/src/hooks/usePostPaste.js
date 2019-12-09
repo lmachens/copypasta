@@ -6,11 +6,11 @@ export default function usePostPaste() {
   const [error, setError] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
 
-  async function doPost(pasteValue) {
+  async function doPost(paste) {
     try {
       setLoading(true);
       setError(false);
-      const pasteId = await postPaste({ value: pasteValue });
+      const pasteId = await postPaste(paste);
       setPasteId(pasteId);
     } catch (error) {
       console.error(error);
