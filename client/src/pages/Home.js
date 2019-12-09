@@ -8,6 +8,7 @@ import Alert from "../components/Alert";
 import { Redirect } from "react-router-dom";
 import FullContainer from "../components/FullContainer";
 import usePostPaste from "../hooks/usePostPaste";
+import Selector from "../components/SelectTime";
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -16,10 +17,7 @@ const PasteAreaStyled = styled(PasteArea)`
 export default function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState("");
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
-
-  async function handleClick() {
-    await doPost(pasteValue);
-  }
+  const [time, setTime] = React.useState(-1);
 
   React.useEffect(() => {
     if (pasteId) {
@@ -36,7 +34,14 @@ export default function Home({ onPaste }) {
         value={pasteValue}
         onChange={event => setPasteValue(event.target.value)}
       />
-      <SubmitButton onClick={handleClick} disabled={!pasteValue || loading} />
+      <Selector
+        value={time}
+        onChange={event => setTime(parseInt(event.target.value))}
+      ></Selector>
+      <SubmitButton
+        onClick={() => doPost(pasteValue, time)}
+        disabled={!pasteValue || loading}
+      />
       {loading && <Loading />}
       {error && (
         <Alert>
