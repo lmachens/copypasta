@@ -1,5 +1,6 @@
-import React from "react";
-import styled from "@emotion/styled";
+import React from 'react';
+import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 
 const SelectBox = styled.select`
   display: block;
@@ -8,7 +9,7 @@ const SelectBox = styled.select`
   font-size: 14px;
 `;
 
-export default function SelectTime({ onChange, value }) {
+function SelectTime({ onChange, value }) {
   return (
     <div>
       <label>
@@ -25,3 +26,10 @@ export default function SelectTime({ onChange, value }) {
     </div>
   );
 }
+
+SelectTime.propTypes = {
+  onChange: PropTypes.func,
+  value: PropTypes.number
+};
+
+export default SelectTime;

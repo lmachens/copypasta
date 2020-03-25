@@ -1,12 +1,13 @@
-import React from "react";
-import Loading from "../components/Loading";
-import Alert from "../components/Alert";
-import styled from "@emotion/styled";
-import DateTime from "../components/DateTime";
-import useGetPaste from "../hooks/useGetPaste";
-import Button from "../components/Button";
-import FullContainer from "../components/FullContainer";
-import Author from "../components/Author";
+import React from 'react';
+import Loading from '../components/Loading';
+import Alert from '../components/Alert';
+import styled from '@emotion/styled';
+import DateTime from '../components/DateTime';
+import useGetPaste from '../hooks/useGetPaste';
+import Button from '../components/Button';
+import FullContainer from '../components/FullContainer';
+import Author from '../components/Author';
+import PropTypes from 'prop-types';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -16,7 +17,7 @@ const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
 
-export default function Paste({ match }) {
+function Paste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
 
   return (
@@ -42,3 +43,9 @@ export default function Paste({ match }) {
     </FullContainer>
   );
 }
+
+Paste.propTypes = {
+  match: PropTypes.object
+};
+
+export default Paste;

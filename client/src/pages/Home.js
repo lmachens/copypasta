@@ -1,17 +1,18 @@
-import React from "react";
-import Logo from "../icons/Logo";
-import PasteArea from "../components/PasteArea";
-import styled from "@emotion/styled";
-import SubmitButton from "../components/SubmitButton";
-import Loading from "../components/Loading";
-import Alert from "../components/Alert";
-import { Redirect, useHistory } from "react-router-dom";
-import FullContainer from "../components/FullContainer";
-import usePostPaste from "../hooks/usePostPaste";
-import RandomButton from "../components/RandomButton";
-import { getRandomPaste } from "../api/pastes";
-import AuthorInput from "../components/AuthorInput";
-import SelectTime from "../components/SelectTime";
+import React from 'react';
+import Logo from '../icons/Logo';
+import PasteArea from '../components/PasteArea';
+import styled from '@emotion/styled';
+import SubmitButton from '../components/SubmitButton';
+import Loading from '../components/Loading';
+import Alert from '../components/Alert';
+import { Redirect, useHistory } from 'react-router-dom';
+import FullContainer from '../components/FullContainer';
+import usePostPaste from '../hooks/usePostPaste';
+import RandomButton from '../components/RandomButton';
+import { getRandomPaste } from '../api/pastes';
+import AuthorInput from '../components/AuthorInput';
+import SelectTime from '../components/SelectTime';
+import PropTypes from 'prop-types';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -21,10 +22,10 @@ const RandomButtonStyled = styled(RandomButton)`
   margin-top: 12px;
 `;
 
-export default function Home({ onPaste }) {
-  const [pasteValue, setPasteValue] = React.useState("");
+function Home({ onPaste }) {
+  const [pasteValue, setPasteValue] = React.useState('');
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
-  const [author, setAuthor] = React.useState("");
+  const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
 
   React.useEffect(() => {
@@ -71,3 +72,9 @@ export default function Home({ onPaste }) {
     </FullContainer>
   );
 }
+
+Home.propTypes = {
+  onPaste: PropTypes.func
+};
+
+export default Home;

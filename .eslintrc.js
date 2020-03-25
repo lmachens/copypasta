@@ -3,7 +3,8 @@ module.exports = {
     browser: true,
     commonjs: true,
     es6: true,
-    node: true
+    node: true,
+    jest: true
   },
   extends: ['eslint:recommended', 'prettier', 'plugin:react/recommended'],
   globals: {
@@ -18,5 +19,7 @@ module.exports = {
     sourceType: 'module'
   },
   plugins: ['prettier', 'react'],
-  rules: {}
+  rules: {
+    'prettier/prettier': 'error'
+  }
 };
