@@ -1,14 +1,23 @@
-import { createGlobalStyle } from "styled-components";
+import React from "react";
+import { Global, css } from "@emotion/core";
 
-export default createGlobalStyle`
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
+function GlobalStyle() {
+  return (
+    <Global
+      styles={css`
+        *,
+        *:before,
+        *:after {
+          box-sizing: border-box;
+        }
+        body {
+          font-size: 16px;
+          margin: 0;
+          font-family: RobotoMono-Regular, Roboto Mono;
+        }
+      `}
+    />
+  );
 }
-body {
-  font-size: 16px;
-  margin: 0;
-  font-family: RobotoMono-Regular, Roboto Mono;
-}
-`;
+
+export default GlobalStyle;
