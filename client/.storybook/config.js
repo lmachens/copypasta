@@ -1,5 +1,5 @@
 import GlobalStyles from "../src/GlobalStyles";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { configure, addDecorator } from "@storybook/react";
 import React from "react";
 

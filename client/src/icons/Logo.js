@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { fadeIn } from "../utils/animations";
 
 const Fork = styled.path`

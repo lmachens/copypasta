@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 const Author = styled.input`
   border: 5px solid #8b7e7e;
