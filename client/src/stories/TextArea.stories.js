@@ -1,8 +1,8 @@
-import React from "react";
-import PasteArea from "../components/PasteArea";
+import React from 'react';
+import PasteArea from '../components/PasteArea';
 
 export default {
-  title: "PasteArea"
+  title: 'PasteArea'
 };
 
 export const Default = () => <PasteArea />;

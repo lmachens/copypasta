@@ -1,8 +1,8 @@
-import React from "react";
-import SubmitButton from "../components/SubmitButton";
+import React from 'react';
+import SubmitButton from '../components/SubmitButton';
 
 export default {
-  title: "Buttons"
+  title: 'Buttons'
 };
 
 export const Submit = () => <SubmitButton />;

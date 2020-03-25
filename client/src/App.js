@@ -1,16 +1,16 @@
-import React from "react";
-import GlobalStyles from "./GlobalStyles";
-import Home from "./pages/Home";
-import { BrowserRouter as Router, Route } from "react-router-dom";
-import Paste from "./pages/Paste";
-import Confirmation from "./components/Confirmation";
+import React from 'react';
+import GlobalStyles from './GlobalStyles';
+import Home from './pages/Home';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import Paste from './pages/Paste';
+import Confirmation from './components/Confirmation';
 
 function copyPasteURL(pasteId) {
-  const dummy = document.createElement("input");
+  const dummy = document.createElement('input');
   document.body.appendChild(dummy);
   dummy.value = `${window.location.origin}/${pasteId}`;
   dummy.select();
-  document.execCommand("copy");
+  document.execCommand('copy');
   document.body.removeChild(dummy);
 }
 

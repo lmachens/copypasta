@@ -1,5 +1,5 @@
-import React from "react";
-import { postPaste } from "../api/pastes";
+import React from 'react';
+import { postPaste } from '../api/pastes';
 
 export default function usePostPaste() {
   const [pasteId, setPasteId] = React.useState(null);
