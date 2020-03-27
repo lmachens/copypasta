@@ -22,6 +22,33 @@ function Paste({ match, embedded }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
   const [oneTimeActive, doDelete] = useDeletePaste(pasteId);
 
+  function handleClickEvent() {
+    const proxy = 'https://cors-anywhere.herokuapp.com/';
+    const api = `${proxy}https://api.sendgrid.com/v3/mail/send`;
+
+    const emailBody = {
+      personalizations: [
+        {
+          to: [{ email: 'rockt2935@gmail.com', name: 'John Doe' }],
+          subject: 'Hello, World!'
+        }
+      ],
+      content: [{ type: 'text/html', value: `${paste.value}` }],
+      from: { email: 'copypaste@gmx.de', name: 'CopyPasta🍝' },
+      reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta🍜' }
+    };
+
+    return fetch(api, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization:
+          'Bearer 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'
+      },
+      body: JSON.stringify(emailBody)
+    });
+  }
+
   return (
     <FullContainer>
       {loading && <Loading />}

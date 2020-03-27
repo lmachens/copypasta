@@ -28,7 +28,7 @@ function PasteBody({ paste, pasteId, embedded, oneTimeActive }) {
       <PasteArea>{paste.value}</PasteArea>
       {!embedded && paste.isEmbeddable && <EmbedButton pasteId={pasteId} />}
       <>
-        <SendEmailButton></SendEmailButton>
+        <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
       </>
     </>
   );
