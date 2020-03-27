@@ -11,7 +11,7 @@ function SelectOneTime({ onChange, isActive }) {
   return (
     <CheckBox onChange={onChange} checked={isActive}>
       <legend>Should your pasta be available for only one view?</legend>
-      <input type="checkbox" checked={isActive} />
+      <input type="checkbox" />
       <label>Yes, that sounds cool</label>
     </CheckBox>
   );
