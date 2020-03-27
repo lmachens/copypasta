@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
+import VoteButton from '../components/VoteButton';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -37,6 +38,7 @@ function Paste({ match }) {
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
           <Author name={paste.author} />
+          <VoteButton></VoteButton>
           <PasteArea>{paste.value}</PasteArea>
         </>
       )}
