@@ -1,5 +1,5 @@
 import React from 'react';
-import { postPaste } from '../api/pastes';
+import { postPaste, postPasteToSlack } from '../api/pastes';
 
 export default function usePostPaste() {
   const [pasteId, setPasteId] = React.useState(null);
@@ -11,6 +11,7 @@ export default function usePostPaste() {
       setLoading(true);
       setError(false);
       const pasteId = await postPaste(paste);
+      postPasteToSlack(paste);
       setPasteId(pasteId);
     } catch (error) {
       console.error(error);
