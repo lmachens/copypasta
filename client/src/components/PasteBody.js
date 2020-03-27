@@ -25,7 +25,9 @@ function PasteBody({ paste }) {
 }
 
 PasteBody.propTypes = {
-  paste: PropTypes.object
+  paste: PropTypes.object,
+  isActive: PropTypes.bool,
+  setIsActive: PropTypes.func
 };
 
 export default PasteBody;
