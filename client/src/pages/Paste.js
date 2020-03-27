@@ -40,7 +40,10 @@ function Paste({ match }) {
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
           <EmbedButton
-            hidden={paste.isEmbeddable === false}
+            hidden={
+              paste.isEmbeddable === false ||
+              (paste.isEmbeddable === null) === true
+            }
             pasteId={match.params.pasteId}
           />
         </>
