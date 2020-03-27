@@ -13,6 +13,8 @@ import { getRandomPaste } from '../api/pastes';
 import AuthorInput from '../components/AuthorInput';
 import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
+import EncryptCheckbox from '../components/EncryptCheckbox';
+import PasswordInput from '../components/EncryptInput';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -58,6 +60,10 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
+
+      <EncryptCheckbox />
+      <PasswordInput />
+
       <SubmitButton
         onClick={() => doPost({ value: pasteValue, author, expireTime })}
         disabled={!pasteValue || !author || loading}
