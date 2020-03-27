@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import Alert from './Alert';
+import Confirmation from './Confirmation';
 import PropTypes from 'prop-types';
 
 export default function EmbedButton(props) {
@@ -19,7 +19,9 @@ export default function EmbedButton(props) {
   }
   return (
     <>
-      {embedCodeCopied && <Alert>Copied Embed Code to your Clipboard!</Alert>}
+      {embedCodeCopied && (
+        <Confirmation>Copied Embed Code to your Clipboard!</Confirmation>
+      )}
       <Button {...props} onClick={() => handleEmbedButtonClick()}>
         Copy Embed Code
       </Button>
