@@ -13,6 +13,7 @@ import { getRandomPaste } from '../api/pastes';
 import AuthorInput from '../components/AuthorInput';
 import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
+import SelectOneTime from '../components/SelectOneTime';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -27,6 +28,7 @@ function Home({ onPaste }) {
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
+  const [oneTimeView, setOneTimeView] = React.useState(false);
 
   React.useEffect(() => {
     if (pasteId) {
@@ -58,6 +60,12 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
+
+      <SelectOneTime
+        value={oneTimeView}
+        onChange={event => setOneTimeView(event.target.value)}
+      />
+
       <SubmitButton
         onClick={() => doPost({ value: pasteValue, author, expireTime })}
         disabled={!pasteValue || !author || loading}
