@@ -17,6 +17,13 @@ const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
 
+const EmbedPasteContainer = styled.div`
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 function EmbedPaste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
 
@@ -33,11 +40,13 @@ function EmbedPaste({ match }) {
       )}
       {paste && (
         <>
-          <CreatedAt date={new Date(paste.createdAt)}>
-            {new Date(paste.createdAt).toDateString()}
-          </CreatedAt>
-          <Author name={paste.author} />
-          <PasteArea>{paste.value}</PasteArea>
+          <EmbedPasteContainer>
+            <CreatedAt date={new Date(paste.createdAt)}>
+              {new Date(paste.createdAt).toDateString()}
+            </CreatedAt>
+            <Author name={paste.author} />
+            <PasteArea>{paste.value}</PasteArea>
+          </EmbedPasteContainer>
         </>
       )}
     </FullContainer>
