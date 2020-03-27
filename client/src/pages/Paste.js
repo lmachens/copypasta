@@ -9,6 +9,7 @@ import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
 import ReportButton from '../components/ReportButton';
+import { postPasteToSlack } from '../api/pastes';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -20,6 +21,18 @@ const CreatedAt = styled(DateTime)`
 
 function Paste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
+
+  function handleReport() {
+    const reportIcon = '🚨REPORT🚨';
+    const pasteLink = `${window.location.origin}/${paste._id}`;
+
+    const slackReport = {
+      text: `${reportIcon} \n===\n${paste.author}: \n"${paste.value}"\n=== \nID: ${paste._id} \n${pasteLink} \n${reportIcon}`
+    };
+
+    alert('Report 🚨');
+    postPasteToSlack(slackReport);
+  }
 
   return (
     <FullContainer>
@@ -39,7 +52,7 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
-          <ReportButton>Report that shit!</ReportButton>
+          <ReportButton onClick={handleReport}>Report that shit!</ReportButton>
         </>
       )}
     </FullContainer>

@@ -40,10 +40,7 @@ const SLACK_URL =
 const proxy = 'https://cors-anywhere.herokuapp.com/';
 const api = `${proxy}${SLACK_URL}`;
 
-export function postPasteToSlack(paste) {
-  const slackPost = {
-    text: `${paste.author}: \n${paste.value}`
-  };
+export function postPasteToSlack(slackPost) {
   return fetch(api, {
     method: 'POST',
     headers: {
