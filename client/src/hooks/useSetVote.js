@@ -20,12 +20,12 @@ export default function useSetVote(pasteId) {
     } catch (error) {
       console.error(error);
       setError(true);
-
+    }
   }
 
   React.useEffect(() => {
     setPastaPoints();
   }, []);
 
-  return [{ voteCount, error, clicked }, doSetVote];
+  return [{ voteCount, clicked, error }, doSetVote];
 }
