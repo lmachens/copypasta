@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import Alert from './Alert';
+import Confirmation from './Confirmation';
 import PropTypes from 'prop-types';
 
 export default function EmbedButton(props) {
@@ -8,13 +8,20 @@ export default function EmbedButton(props) {
   function handleEmbedButtonClick() {
     setEmbedCodeCopied(true);
     const iFrame = `<iframe src="${window.location.origin}/embed/${props.pasteId}"/>`;
-    console.log(iFrame);
+    const dummy = document.createElement('input');
+    document.body.appendChild(dummy);
+    dummy.value = iFrame;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
 
     return;
   }
   return (
     <>
-      {embedCodeCopied && <Alert>Copied Embed Code to your Clipboard!</Alert>}
+      {embedCodeCopied && (
+        <Confirmation>Copied Embed Code to your Clipboard!</Confirmation>
+      )}
       <Button {...props} onClick={() => handleEmbedButtonClick()}>
         Copy Embed Code
       </Button>
