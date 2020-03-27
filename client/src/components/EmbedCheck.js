@@ -9,12 +9,12 @@ const EmbedCheckContainer = styled.div`
   margin: 10px;
 `;
 
-export default function EmbedCheck() {
+export default function EmbedCheck(props) {
   return (
     <>
       <EmbedCheckContainer>
         Should your paste be embeddable?
-        <EmbedCheckbox type="checkbox" />
+        <EmbedCheckbox type="checkbox" {...props} />
       </EmbedCheckContainer>
     </>
   );

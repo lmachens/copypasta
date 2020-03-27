@@ -39,7 +39,7 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
-          <EmbedButton />
+          <EmbedButton hidden={paste.isEmbeddable === false} />
         </>
       )}
     </FullContainer>
