@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from '@emotion/styled';
+import PropTypes from 'prop-types';
 import HotPastaVoteIcon from '../icons/HotPastaVoteIcon';
 
 const Button = styled.button`
@@ -9,18 +10,24 @@ const Button = styled.button`
   margin: 10px;
   outline: none;
   cursor: pointer;
-
-  :active {
-    background-color: #ff6666;
-  }
+  background-color: ${props => (props.disabled ? '#FF9E99' : 'transparent')};
 `;
 
-function VoteButton() {
+function VoteButton({ onVoteButtonClick, disabled, pastaPoints }) {
   return (
-    <Button>
-      <HotPastaVoteIcon />
-    </Button>
+    <>
+      <Button onClick={onVoteButtonClick} disabled={disabled}>
+        <HotPastaVoteIcon />
+      </Button>
+      <div>{!pastaPoints ? 0 : pastaPoints} Pasta Points</div>
+    </>
   );
 }
+
+VoteButton.propTypes = {
+  onVoteButtonClick: PropTypes.func,
+  disabled: PropTypes.bool,
+  pastaPoints: PropTypes.number
+};
 
 export default VoteButton;
