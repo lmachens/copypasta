@@ -62,8 +62,8 @@ function Home({ onPaste }) {
       ></SelectTime>
 
       <SelectOneTime
-        value={oneTimeView}
-        onChange={event => setOneTimeView(event.target.value)}
+        isActive={oneTimeView}
+        onChange={() => setOneTimeView(!oneTimeView)}
       />
 
       <SubmitButton
