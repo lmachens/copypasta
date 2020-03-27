@@ -8,7 +8,12 @@ export default function EmbedButton(props) {
   function handleEmbedButtonClick() {
     setEmbedCodeCopied(true);
     const iFrame = `<iframe src="${window.location.origin}/embed/${props.pasteId}"/>`;
-    console.log(iFrame);
+    const dummy = document.createElement('input');
+    document.body.appendChild(dummy);
+    dummy.value = iFrame;
+    dummy.select();
+    document.execCommand('copy');
+    document.body.removeChild(dummy);
 
     return;
   }
