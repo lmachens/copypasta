@@ -26,7 +26,10 @@ function Paste({ match }) {
       {error && (
         <>
           <Alert>
-            <div>☠️☠️☠️</div>Can not get paste!
+            <div>
+              <span>☠️☠️☠️</span>
+            </div>
+            Can not get paste!
           </Alert>
           <Button onClick={doGet}>Try again</Button>
         </>
