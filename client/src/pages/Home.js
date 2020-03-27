@@ -13,6 +13,7 @@ import { getRandomPaste } from '../api/pastes';
 import AuthorInput from '../components/AuthorInput';
 import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
+import EmbedCheck from '../components/EmbedCheck';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -58,6 +59,7 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
+      <EmbedCheck />
       <SubmitButton
         onClick={() => doPost({ value: pasteValue, author, expireTime })}
         disabled={!pasteValue || !author || loading}

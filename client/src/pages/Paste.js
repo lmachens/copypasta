@@ -8,6 +8,7 @@ import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
+import EmbedButton from '../components/EmbedButton';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -38,6 +39,7 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
+          <EmbedButton />
         </>
       )}
     </FullContainer>
