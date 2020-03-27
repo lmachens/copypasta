@@ -67,7 +67,9 @@ function Home({ onPaste }) {
       />
 
       <SubmitButton
-        onClick={() => doPost({ value: pasteValue, author, expireTime })}
+        onClick={() =>
+          doPost({ value: pasteValue, author, expireTime, oneTimeView })
+        }
         disabled={!pasteValue || !author || loading}
       />
       <RandomButtonStyled onClick={handleRandomClick} />
