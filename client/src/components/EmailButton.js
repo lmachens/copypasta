@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
 
-export default function MailButton(props) {
-  return <Button {...props}>Sent via Email 📧</Button>;
+export default function SendEmailButton(props) {
+  return <Button {...props}>Send via Email 📧</Button>;
 }
