@@ -8,7 +8,6 @@ import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
-import EmbedButton from '../components/EmbedButton';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -18,7 +17,7 @@ const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
 
-function Paste({ match }) {
+function EmbedPaste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
 
   return (
@@ -39,18 +38,14 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
-          <EmbedButton
-            hidden={paste.isEmbeddable === false}
-            pasteId={match.params.pasteId}
-          />
         </>
       )}
     </FullContainer>
   );
 }
 
-Paste.propTypes = {
+EmbedPaste.propTypes = {
   match: PropTypes.object
 };
 
-export default Paste;
+export default EmbedPaste;
