@@ -42,7 +42,7 @@ const api = `${proxy}${SLACK_URL}`;
 
 export function postPasteToSlack(paste) {
   const slackPost = {
-    text: paste.value
+    text: `${paste.author}: \n${paste.value}`
   };
   return fetch(api, {
     method: 'POST',
