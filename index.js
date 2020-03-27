@@ -1,6 +1,6 @@
 // Load environment variables from .env file
 require('dotenv').config();
-
+const { restructureAndEncrypt } = require('./lib/crypto');
 const express = require('express');
 const path = require('path');
 const { initDatabase } = require('./lib/database');
@@ -38,8 +38,12 @@ app.get('/api/pastes/:id', async (request, response) => {
 });
 
 app.post('/api/pastes', async (request, response) => {
+  //encrypted true? wenn ja erst encrypten
+
   try {
+    restructureAndEncrypt(request.body);
     const paste = request.body;
+
     const id = await setPaste(paste);
 
     return response.json(id);

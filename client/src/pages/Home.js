@@ -29,6 +29,7 @@ function Home({ onPaste }) {
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
+  // 2 states checkbox und password input
 
   React.useEffect(() => {
     if (pasteId) {

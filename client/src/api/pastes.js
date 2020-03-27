@@ -1,6 +1,6 @@
 export function getPaste(pasteId) {
   return fetch(`/api/pastes/${pasteId}`, {
-    method: "GET"
+    method: 'GET'
   })
     .then(response => {
       if (response.status !== 200) {
@@ -13,7 +13,7 @@ export function getPaste(pasteId) {
 
 export function getRandomPaste() {
   return fetch(`/api/pastes/random`, {
-    method: "GET"
+    method: 'GET'
   })
     .then(response => {
       if (response.status !== 200) {
@@ -26,10 +26,11 @@ export function getRandomPaste() {
 
 export function postPaste(paste) {
   return fetch(`/api/pastes`, {
-    method: "POST",
+    method: 'POST',
     headers: {
-      "Content-Type": "application/json"
+      'Content-Type': 'application/json',
+      Encrypt: 'true'
     },
-    body: JSON.stringify(paste)
+    body: JSON.stringify(paste) //encryptedPasta
   }).then(response => response.json());
 }
