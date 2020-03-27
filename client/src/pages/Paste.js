@@ -7,10 +7,11 @@ import FullContainer from '../components/FullContainer';
 import PropTypes from 'prop-types';
 import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
+import useDeletePaste from '../hooks/useDeletePaste';
 
 function Paste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
-  const [oneTimeActive, setOneTimeActive] = React.useState(false);
+  const [{ oneTimeActive }, doDelete] = useDeletePaste(match.params.pasteId);
 
   return (
     <FullContainer>
@@ -29,9 +30,7 @@ function Paste({ match }) {
           {!oneTimeActive && (
             <>
               <label>You can see it only once. Are you ready?</label>
-              <WarningButton onClick={() => setOneTimeActive(!oneTimeActive)}>
-                YES!!!
-              </WarningButton>
+              <WarningButton onClick={doDelete}>YES!!!</WarningButton>
             </>
           )}
           {oneTimeActive && <PasteBody paste={paste} />}
