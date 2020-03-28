@@ -18,11 +18,12 @@ const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
 const Input = styled.input`
-  height: 40px;
-  width: 150px;
-  margin: 10px;
+  border: 5px solid #8b7e7e;
+  border-radius: 15px;
+  box-shadow: 0px 5px 0px #b4b4b4;
+  min-width: 500px;
   padding: 10px;
-  border: 2px dashed grey;
+  margin: 10px;
 `;
 
 function Paste({ match }) {
@@ -77,8 +78,9 @@ function Paste({ match }) {
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
           <Input
-            placeholder="Email"
+            placeholder="type in your email..."
             value={inputValue}
+            type="email"
             onChange={event => setInputValue(event.target.value)}
           ></Input>
           <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
