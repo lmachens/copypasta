@@ -16,6 +16,13 @@ const Content = styled.div`
   flex-direction: column;
   align-items: center;
 `;
+const Input = styled.input`
+  height: 40px;
+  width: 150px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px dashed grey;
+`;
 
 function Paste({ match, embedded }) {
   const { pasteId } = match.params;
@@ -51,14 +58,6 @@ function Paste({ match, embedded }) {
       body: JSON.stringify(emailBody)
     });
   }
-
-  const Input = styled.input`
-    height: 40px;
-    width: 150px;
-    margin: 10px;
-    padding: 10px;
-    border: 2px dashed grey;
-  `;
 
   return (
     <FullContainer>
