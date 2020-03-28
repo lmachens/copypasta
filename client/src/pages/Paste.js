@@ -19,6 +19,8 @@ const CreatedAt = styled(DateTime)`
 `;
 
 function Paste({ match }) {
+  const [inputValue, setInputValue] = React.useState('');
+
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
 
   function handleClickEvent() {
@@ -28,13 +30,14 @@ function Paste({ match }) {
     const emailBody = {
       personalizations: [
         {
-          to: [{ email: 'rockt2935@gmail.com', name: 'John Doe' }],
-          subject: 'Hello, World!'
+          to: [{ email: `${inputValue}`, name: 'John Doe' }],
+          subject: 'Your pasta 🤪!'
         }
       ],
       content: [{ type: 'text/html', value: `${paste.value}` }],
-      from: { email: 'copypaste@gmx.de', name: 'CopyPasta🍝' },
-      reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta🍜' }
+
+      from: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍝' },
+      reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
     };
 
     return fetch(api, {
@@ -47,6 +50,14 @@ function Paste({ match }) {
       body: JSON.stringify(emailBody)
     });
   }
+
+  const Input = styled.input`
+    height: 40px;
+    width: 150px;
+    margin: 10px;
+    padding: 10px;
+    border: 2px dashed grey;
+  `;
 
   return (
     <FullContainer>
@@ -66,6 +77,11 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
+          <Input
+            placeholder="Email"
+            value={inputValue}
+            onChange={event => setInputValue(event.target.value)}
+          ></Input>
           <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
         </>
       )}
