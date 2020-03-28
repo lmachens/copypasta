@@ -17,6 +17,13 @@ const PasteArea = styled.div`
 const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
+const Input = styled.input`
+  height: 40px;
+  width: 150px;
+  margin: 10px;
+  padding: 10px;
+  border: 2px dashed grey;
+`;
 
 function Paste({ match }) {
   const [inputValue, setInputValue] = React.useState('');
@@ -50,14 +57,6 @@ function Paste({ match }) {
       body: JSON.stringify(emailBody)
     });
   }
-
-  const Input = styled.input`
-    height: 40px;
-    width: 150px;
-    margin: 10px;
-    padding: 10px;
-    border: 2px dashed grey;
-  `;
 
   return (
     <FullContainer>
