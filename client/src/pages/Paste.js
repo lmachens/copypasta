@@ -9,7 +9,7 @@ import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
 import SendEmailButton from '../components/EmailButton';
-import Input from '../components/EmailInput';
+import EmailInput from '../components/EmailInput';
 import Approval from '../components/Approval';
 
 const PasteArea = styled.div`
@@ -73,12 +73,12 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
-          <Input
+          <EmailInput
             placeholder="Enter the email of your recipient"
             value={inputValue}
             type="email"
             onChange={event => setInputValue(event.target.value)}
-          ></Input>
+          ></EmailInput>
           <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
           <div>{Approval(approval)}</div>
         </>
