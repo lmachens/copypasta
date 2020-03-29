@@ -29,7 +29,8 @@ function Home({ onPaste }) {
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
-  // 2 states checkbox und password input
+  const [checkbox, setCheckbox] = React.useState(false);
+  const [password, setPassword] = React.useState('');
 
   React.useEffect(() => {
     if (pasteId) {
@@ -62,11 +63,19 @@ function Home({ onPaste }) {
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
 
-      <EncryptCheckbox />
-      <PasswordInput />
+      <EncryptCheckbox
+        value={checkbox}
+        onChange={checked => setCheckbox(checked === true)}
+      />
+      <PasswordInput
+        value={password}
+        onChange={event => setPassword(event.target.value)}
+      />
 
       <SubmitButton
-        onClick={() => doPost({ value: pasteValue, author, expireTime })}
+        onClick={() =>
+          doPost({ value: pasteValue, author, expireTime, password })
+        }
         disabled={!pasteValue || !author || loading}
       />
       <RandomButtonStyled onClick={handleRandomClick} />
