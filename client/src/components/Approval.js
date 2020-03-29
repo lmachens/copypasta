@@ -8,8 +8,6 @@ function Approval(approved) {
   //   });
   if (approved === true) {
     return <Alert>Email Successfully Sent 🎁</Alert>;
-  } else {
-    return;
   }
 }
 
