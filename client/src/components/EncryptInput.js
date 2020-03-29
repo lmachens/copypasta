@@ -11,6 +11,6 @@ const Input = styled.input`
   outline: none;
 `;
 
-export default function PasswordInput() {
-  return <Input placeholder="Enter password..." />;
+export default function PasswordInput(props) {
+  return <Input placeholder="Enter password..." type="password" {...props} />;
 }
