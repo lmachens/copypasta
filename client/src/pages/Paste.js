@@ -9,6 +9,7 @@ import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
 import SendEmailButton from '../components/EmailButton';
+import Approval from '../components/Approval';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -28,8 +29,8 @@ const Input = styled.input`
 
 function Paste({ match }) {
   const [inputValue, setInputValue] = React.useState('');
-
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
+  const [approval, setApproval] = React.useState(false);
 
   function handleClickEvent() {
     const proxy = 'https://cors-anywhere.herokuapp.com/';
@@ -47,6 +48,8 @@ function Paste({ match }) {
       from: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍝' },
       reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
     };
+
+    setApproval(true);
 
     return fetch(api, {
       method: 'POST',
@@ -84,6 +87,7 @@ function Paste({ match }) {
             onChange={event => setInputValue(event.target.value)}
           ></Input>
           <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
+          <div>{Approval(approval)}</div>
         </>
       )}
     </FullContainer>
