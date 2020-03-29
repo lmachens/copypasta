@@ -21,7 +21,29 @@ function Paste({ match, embedded }) {
   const { pasteId } = match.params;
   const [oneTimeActive, doDelete] = useDeletePaste(pasteId);
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
+  const [approval, setApproval] = React.useState(false);
 
+  function handleClickEvent() {
+    const proxy = 'https://cors-anywhere.herokuapp.com/';
+    const api = `${proxy}https://api.sendgrid.com/v3/mail/send`;
+
+    const emailBody = {
+      personalizations: [
+        {
+          to: [{ email: `${inputValue}`, name: 'John Doe' }],
+          subject: 'Your pasta 🤪!'
+        }
+      ],
+      content: [{ type: 'text/html', value: `${paste.value}` }],
+
+      from: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍝' },
+      reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
+    };
+
+    setApproval(true);
+
+    postEmail(api, emailBody);
+  }
   return (
     <FullContainer>
       {loading && <Loading />}
