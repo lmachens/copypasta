@@ -6,28 +6,15 @@ import useGetPaste from '../hooks/useGetPaste';
 import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
 import PropTypes from 'prop-types';
-<<<<<<< HEAD
 import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
 import useDeletePaste from '../hooks/useDeletePaste';
-=======
-import SendEmailButton from '../components/EmailButton';
-import Approval from '../components/Approval';
->>>>>>> Add Approval component to show successful sending
 
 const Content = styled.div`
   overflow: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-const Input = styled.input`
-  border: 5px solid #8b7e7e;
-  border-radius: 15px;
-  box-shadow: 0px 5px 0px #b4b4b4;
-  min-width: 500px;
-  padding: 10px;
-  margin: 10px;
 `;
 
 function Paste({ match, embedded }) {
