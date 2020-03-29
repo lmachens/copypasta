@@ -9,11 +9,11 @@ const Checkbox = styled.input`
   margin-left: 10px;
 `;
 
-export default function EncryptCheckbox() {
+export default function EncryptCheckbox(value, onChange) {
   return (
     <Label>
       Encrypt my pasta:
-      <Checkbox type="checkbox" />
+      <Checkbox value={value} onChange={onChange} type="checkbox" />
     </Label>
   );
 }
