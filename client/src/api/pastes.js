@@ -70,6 +70,7 @@ export function sendPastaViaMail(mailInputValue, pasteId) {
     content: [{ type: 'text/html', value: `${pasteId}` }],
 
     from: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍝' },
+
     reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
   };
 

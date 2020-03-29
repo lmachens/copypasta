@@ -1,13 +1,9 @@
 import React from 'react';
-import Alert from './Alert';
+import Confirmation from './Confirmation';
 
 function Approval(approved) {
-  //   const [approval, setApproval] = React.useState(false);
-  //   React.useEffect(() => {
-  //     setApproval(true);
-  //   });
   if (approved === true) {
-    return <Alert>Email Successfully Sent 🎁</Alert>;
+    return <Confirmation>Email Successfully Sent 🎁</Confirmation>;
   }
 }
 
