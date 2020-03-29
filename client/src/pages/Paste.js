@@ -9,6 +9,7 @@ import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
 import SendEmailButton from '../components/EmailButton';
+import EmailInput from '../components/EmailInput';
 import Approval from '../components/Approval';
 
 const PasteArea = styled.div`
@@ -16,14 +17,6 @@ const PasteArea = styled.div`
 `;
 
 const CreatedAt = styled(DateTime)`
-  margin: 10px;
-`;
-const Input = styled.input`
-  border: 5px solid #8b7e7e;
-  border-radius: 15px;
-  box-shadow: 0px 5px 0px #b4b4b4;
-  min-width: 500px;
-  padding: 10px;
   margin: 10px;
 `;
 
@@ -80,12 +73,12 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
-          <Input
-            placeholder="type in your email..."
+          <EmailInput
+            placeholder="Enter the email of your recipient"
             value={inputValue}
             type="email"
             onChange={event => setInputValue(event.target.value)}
-          ></Input>
+          ></EmailInput>
           <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
           <div>{Approval(approval)}</div>
         </>
