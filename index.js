@@ -51,9 +51,14 @@ app.post('/api/pastes', async (request, response) => {
 });
 
 app.post('/api/pastes/:id/pastaPoints', async (request, response) => {
-  const pasteId = request.params.id;
-  const paste = await incrementPastaPoints(pasteId);
-  return response.json(paste);
+  try {
+    const pasteId = request.params.id;
+    const paste = await incrementPastaPoints(pasteId);
+    return response.json(paste);
+  } catch (error) {
+    console.error(error);
+    response.status(400).end('Error');
+  }
 });
 
 if (process.env.NODE_ENV === 'production') {
