@@ -1,19 +1,15 @@
 import React from 'react';
-import styled from '@emotion/styled';
-
-const Label = styled.label`
-  display: flex;
-  align-items: center;
-  margin: 10px;
-`;
+import PropTypes from 'prop-types';
+import Checkbox from './Checkbox';
 
 function EmbedCheck(props) {
-  return (
-    <Label>
-      Should your pasta be embeddable?
-      <input type="checkbox" {...props} />
-    </Label>
-  );
+  return <Checkbox label="Should your pasta be embeddable?" {...props} />;
 }
+
+EmbedCheck.propTypes = {
+  disabled: PropTypes.bool,
+  onChange: PropTypes.func,
+  checked: PropTypes.bool
+};
 
 export default EmbedCheck;

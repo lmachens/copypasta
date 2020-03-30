@@ -1,17 +1,18 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
-import styled from '@emotion/styled';
-import DateTime from '../components/DateTime';
 import useGetPaste from '../hooks/useGetPaste';
 import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
-import Author from '../components/Author';
 import PropTypes from 'prop-types';
 import ReportButton from '../components/ReportButton';
 import { reportPaste } from '../api/pastes';
 import EmbedButton from '../components/EmbedButton';
 import PastaPoints from '../components/PastaPoints';
+
+import DateTime from '../components/DateTime';
+import Author from '../components/Author';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -49,6 +50,7 @@ function Paste({ match, embedded }) {
           <Button onClick={doGet}>Try again</Button>
         </>
       )}
+
       {paste && (
         <Content>
           <CreatedAt date={new Date(paste.createdAt)}>
