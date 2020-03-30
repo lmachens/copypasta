@@ -34,6 +34,7 @@ export function postPaste(paste) {
   }).then(response => response.json());
 }
 
+
 export function postEmail(api, emailBody) {
   return fetch(api, {
     method: 'POST',
@@ -44,4 +45,12 @@ export function postEmail(api, emailBody) {
     },
     body: JSON.stringify(emailBody)
   });
+  
+export function addPastaPoint(pasteId) {
+  return fetch(`/api/pastes/${pasteId}/pastaPoints`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json());
 }
