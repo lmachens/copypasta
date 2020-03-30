@@ -8,7 +8,8 @@ const {
   getPaste,
   setPaste,
   getRandomPaste,
-  createIndexes
+  createIndexes,
+  incrementPastaPoints
 } = require('./lib/pastes');
 
 const app = express();
@@ -43,6 +44,17 @@ app.post('/api/pastes', async (request, response) => {
     const id = await setPaste(paste);
 
     return response.json(id);
+  } catch (error) {
+    console.error(error);
+    response.status(400).end('Error');
+  }
+});
+
+app.post('/api/pastes/:id/pastaPoints', async (request, response) => {
+  try {
+    const pasteId = request.params.id;
+    const paste = await incrementPastaPoints(pasteId);
+    return response.json(paste);
   } catch (error) {
     console.error(error);
     response.status(400).end('Error');

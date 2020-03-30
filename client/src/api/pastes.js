@@ -45,3 +45,12 @@ export function postPasteToSlack(slackPost) {
     body: JSON.stringify(slackPost)
   });
 }
+
+export function addPastaPoint(pasteId) {
+  return fetch(`/api/pastes/${pasteId}/pastaPoints`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json());
+}

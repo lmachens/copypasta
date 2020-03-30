@@ -13,6 +13,7 @@ import { getRandomPaste } from '../api/pastes';
 import AuthorInput from '../components/AuthorInput';
 import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
+import EmbedCheck from '../components/EmbedCheck';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -27,6 +28,7 @@ function Home({ onPaste }) {
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
+  const [isEmbeddable, setIsEmbeddable] = React.useState(true);
 
   React.useEffect(() => {
     if (pasteId) {
@@ -58,8 +60,16 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
+      <EmbedCheck
+        checked={isEmbeddable}
+        onChange={event => {
+          setIsEmbeddable(event.target.checked);
+        }}
+      />
       <SubmitButton
-        onClick={() => doPost({ value: pasteValue, author, expireTime })}
+        onClick={() =>
+          doPost({ value: pasteValue, author, expireTime, isEmbeddable })
+        }
         disabled={!pasteValue || !author || loading}
       />
       <RandomButtonStyled onClick={handleRandomClick} />

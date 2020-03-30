@@ -10,6 +10,8 @@ import Author from '../components/Author';
 import PropTypes from 'prop-types';
 import ReportButton from '../components/ReportButton';
 import { postPasteToSlack } from '../api/pastes';
+import EmbedButton from '../components/EmbedButton';
+import PastaPoints from '../components/PastaPoints';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -19,8 +21,16 @@ const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
 
-function Paste({ match }) {
-  const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
+const Content = styled.div`
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+function Paste({ match, embedded }) {
+  const { pasteId } = match.params;
+  const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
 
   function handleReport() {
     const reportIcon = '🚨REPORT🚨';
@@ -46,21 +56,24 @@ function Paste({ match }) {
         </>
       )}
       {paste && (
-        <>
+        <Content>
           <CreatedAt date={new Date(paste.createdAt)}>
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
           <Author name={paste.author} />
+          <PastaPoints pastaPoints={paste.pastaPoints} pasteId={pasteId} />
           <PasteArea>{paste.value}</PasteArea>
           <ReportButton onClick={handleReport}>Report that shit!</ReportButton>
-        </>
+          {!embedded && paste.isEmbeddable && <EmbedButton pasteId={pasteId} />}
+        </Content>
       )}
     </FullContainer>
   );
 }
 
 Paste.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
+  embedded: PropTypes.bool
 };
 
 export default Paste;
