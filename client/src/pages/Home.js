@@ -62,16 +62,15 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
-
       <SelectOneTime
-        isActive={oneTimeView}
+        disabled={isEmbeddable}
+        checked={oneTimeView}
         onChange={() => setOneTimeView(!oneTimeView)}
       />
       <EmbedCheck
+        disabled={oneTimeView}
         checked={isEmbeddable}
-        onChange={event => {
-          setIsEmbeddable(event.target.checked);
-        }}
+        onChange={event => setIsEmbeddable(event.target.checked)}
       />
       <SubmitButton
         onClick={() =>

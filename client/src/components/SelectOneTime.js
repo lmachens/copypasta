@@ -1,25 +1,26 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
+import Checkbox from './Checkbox';
 
-const CheckBox = styled.div`
+const Container = styled.div`
   margin: 15px 0;
   text-align: center;
 `;
 
-function SelectOneTime({ onChange, isActive }) {
+function SelectOneTime(props) {
   return (
-    <CheckBox onChange={onChange} checked={isActive}>
+    <Container>
       <legend>Should your pasta be available for only one view?</legend>
-      <input type="checkbox" />
-      <label>Yes, that sounds cool</label>
-    </CheckBox>
+      <Checkbox label="Yes, that sounds cool" {...props} />
+    </Container>
   );
 }
 
 SelectOneTime.propTypes = {
+  disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  isActive: PropTypes.bool
+  checked: PropTypes.bool
 };
 
 export default SelectOneTime;
