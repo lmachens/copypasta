@@ -1,3 +1,5 @@
+import api from './slackConnectData';
+
 export function getPaste(pasteId) {
   return fetch(`/api/pastes/${pasteId}`, {
     method: 'GET'
@@ -33,12 +35,6 @@ export function postPaste(paste) {
     body: JSON.stringify(paste)
   }).then(response => response.json());
 }
-
-// Could be in a seperate file =)
-const SLACK_URL =
-  'https://hooks.slack.com/services/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';
-const proxy = 'https://cors-anywhere.herokuapp.com/';
-const api = `${proxy}${SLACK_URL}`;
 
 export function postPasteToSlack(slackPost) {
   return fetch(api, {
