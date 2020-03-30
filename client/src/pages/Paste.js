@@ -65,13 +65,19 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
-          <EmailInput
-            placeholder="Enter the email of your recipient"
-            value={inputValue}
-            type="email"
-            onChange={event => setInputValue(event.target.value)}
-          ></EmailInput>
-          <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
+
+          <form>
+            <FullContainer>
+              <EmailInput
+                placeholder="Enter the email of your recipient"
+                value={inputValue}
+                type="email"
+                onChange={event => setInputValue(event.target.value)}
+              ></EmailInput>
+              <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
+            </FullContainer>
+          </form>
+
           <div>{Approval(approval)}</div>
         </>
       )}
