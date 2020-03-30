@@ -8,8 +8,7 @@ import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
-import VoteButton from '../components/VoteButton';
-import useSetVote from '../hooks/useSetVote';
+import PastaPoints from '../components/PastaPoints';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -20,8 +19,8 @@ const CreatedAt = styled(DateTime)`
 `;
 
 function Paste({ match }) {
-  const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
-  const [{ voteCount, clicked }, doSetVote] = useSetVote(match.params.pasteId);
+  const { pasteId } = match.params;
+  const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
 
   return (
     <FullContainer>
@@ -40,11 +39,7 @@ function Paste({ match }) {
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
           <Author name={paste.author} />
-          <VoteButton
-            pastaPoints={voteCount}
-            onVoteButtonClick={doSetVote}
-            disabled={loading || clicked}
-          ></VoteButton>
+          <PastaPoints pastaPoints={paste.pastaPoints} pasteId={pasteId} />
           <PasteArea>{paste.value}</PasteArea>
         </>
       )}
