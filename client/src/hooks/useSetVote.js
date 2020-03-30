@@ -1,5 +1,5 @@
 import React from 'react';
-import { setVote, getPaste } from '../api/pastes';
+import { addPastaPoint, getPaste } from '../api/pastes';
 
 export default function useSetVote(pasteId) {
   const [voteCount, setVoteCount] = React.useState();
@@ -14,7 +14,7 @@ export default function useSetVote(pasteId) {
   async function doSetVote() {
     try {
       setError(false);
-      const updatedPaste = await setVote(pasteId);
+      const updatedPaste = await addPastaPoint(pasteId);
       setClicked(true);
       setVoteCount(updatedPaste.pastaPoints);
     } catch (error) {

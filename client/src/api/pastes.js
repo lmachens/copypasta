@@ -34,9 +34,9 @@ export function postPaste(paste) {
   }).then(response => response.json());
 }
 
-export function setVote(pasteId) {
-  return fetch(`/api/pastes/${pasteId}`, {
-    method: 'PATCH',
+export function addPastaPoint(pasteId) {
+  return fetch(`/api/pastes/${pasteId}/pastaPoints`, {
+    method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     }

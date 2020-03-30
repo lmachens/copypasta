@@ -50,7 +50,7 @@ app.post('/api/pastes', async (request, response) => {
   }
 });
 
-app.patch('/api/pastes/:id', async (request, response) => {
+app.post('/api/pastes/:id/pastaPoints', async (request, response) => {
   const pasteId = request.params.id;
   const paste = await incrementPastaPoints(pasteId);
   return response.json(paste);
