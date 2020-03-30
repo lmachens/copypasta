@@ -25,9 +25,7 @@ function PasteBody({ paste, pasteId, embedded, oneTimeActive }) {
         <PastaPoints pastaPoints={paste.pastaPoints} pasteId={pasteId} />
       )}
       <PasteArea>{paste.value}</PasteArea>
-      {!embedded && paste.isEmbeddable && !oneTimeActive && (
-        <EmbedButton pasteId={pasteId} />
-      )}
+      {!embedded && paste.isEmbeddable && <EmbedButton pasteId={pasteId} />}
     </>
   );
 }
