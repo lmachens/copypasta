@@ -14,8 +14,6 @@ export default function EmbedButton(props) {
     dummy.select();
     document.execCommand('copy');
     document.body.removeChild(dummy);
-
-    return;
   }
   return (
     <>
