@@ -10,7 +10,7 @@ const Button = styled.button`
   box-shadow: 0px 5px 0px #b4b4b4;
   margin: 10px;
   outline: none;
-  cursor: pointer;
+  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
   background-color: ${props => (props.disabled ? '#FF9E99' : 'transparent')};
 `;
 
