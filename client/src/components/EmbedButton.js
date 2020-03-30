@@ -18,7 +18,7 @@ function EmbedButton(props) {
       {embedCodeCopied && (
         <Confirmation>Copied Embed Code to your Clipboard!</Confirmation>
       )}
-      <Button {...props} onClick={() => handleEmbedButtonClick()}>
+      <Button {...props} onClick={handleEmbedButtonClick}>
         Copy Embed Code
       </Button>
     </>
