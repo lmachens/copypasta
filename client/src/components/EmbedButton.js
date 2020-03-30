@@ -3,7 +3,7 @@ import Button from './Button';
 import Confirmation from './Confirmation';
 import PropTypes from 'prop-types';
 
-export default function EmbedButton(props) {
+function EmbedButton(props) {
   const [embedCodeCopied, setEmbedCodeCopied] = React.useState(false);
   function handleEmbedButtonClick() {
     setEmbedCodeCopied(true);
@@ -30,3 +30,5 @@ export default function EmbedButton(props) {
 EmbedButton.propTypes = {
   pasteId: PropTypes.string
 };
+
+export default EmbedButton;

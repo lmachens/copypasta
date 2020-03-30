@@ -9,7 +9,7 @@ const EmbedCheckContainer = styled.div`
   margin: 10px;
 `;
 
-export default function EmbedCheck(props) {
+function EmbedCheck(props) {
   return (
     <>
       <EmbedCheckContainer>
@@ -19,3 +19,5 @@ export default function EmbedCheck(props) {
     </>
   );
 }
+
+export default EmbedCheck;
