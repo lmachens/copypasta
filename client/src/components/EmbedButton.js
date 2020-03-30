@@ -2,19 +2,17 @@ import React from 'react';
 import Button from './Button';
 import Confirmation from './Confirmation';
 import PropTypes from 'prop-types';
+import { copyToClipboard } from '../utils/clipboard';
 
 function EmbedButton(props) {
   const [embedCodeCopied, setEmbedCodeCopied] = React.useState(false);
+
   function handleEmbedButtonClick() {
     setEmbedCodeCopied(true);
-    const iFrame = `<iframe src="${window.location.origin}/embed/${props.pasteId}"/>`;
-    const dummy = document.createElement('input');
-    document.body.appendChild(dummy);
-    dummy.value = iFrame;
-    dummy.select();
-    document.execCommand('copy');
-    document.body.removeChild(dummy);
+    const iframeCode = `<iframe src="${window.location.origin}/embed/${props.pasteId}"/>`;
+    copyToClipboard(iframeCode);
   }
+
   return (
     <>
       {embedCodeCopied && (

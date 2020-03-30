@@ -5,14 +5,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Paste from './pages/Paste';
 import Confirmation from './components/Confirmation';
 import EmbedPaste from './pages/EmbedPaste';
+import { copyToClipboard } from './utils/clipboard';
 
 function copyPasteURL(pasteId) {
-  const dummy = document.createElement('input');
-  document.body.appendChild(dummy);
-  dummy.value = `${window.location.origin}/${pasteId}`;
-  dummy.select();
-  document.execCommand('copy');
-  document.body.removeChild(dummy);
+  const pasteURL = `${window.location.origin}/${pasteId}`;
+  copyToClipboard(pasteURL);
 }
 
 function App() {
