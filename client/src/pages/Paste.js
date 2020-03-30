@@ -19,7 +19,14 @@ const CreatedAt = styled(DateTime)`
   margin: 10px;
 `;
 
-function Paste({ match }) {
+const Content = styled.div`
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+function Paste({ match, embedded }) {
   const { pasteId } = match.params;
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
 
@@ -35,28 +42,23 @@ function Paste({ match }) {
         </>
       )}
       {paste && (
-        <>
+        <Content>
           <CreatedAt date={new Date(paste.createdAt)}>
             {new Date(paste.createdAt).toDateString()}
           </CreatedAt>
           <Author name={paste.author} />
           <PastaPoints pastaPoints={paste.pastaPoints} pasteId={pasteId} />
           <PasteArea>{paste.value}</PasteArea>
-          <EmbedButton
-            hidden={
-              paste.isEmbeddable === false ||
-              (paste.isEmbeddable === null) === true
-            }
-            pasteId={match.params.pasteId}
-          />
-        </>
+          {!embedded && paste.isEmbeddable && <EmbedButton pasteId={pasteId} />}
+        </Content>
       )}
     </FullContainer>
   );
 }
 
 Paste.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
+  embedded: PropTypes.bool
 };
 
 export default Paste;

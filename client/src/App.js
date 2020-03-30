@@ -4,7 +4,6 @@ import Home from './pages/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Paste from './pages/Paste';
 import Confirmation from './components/Confirmation';
-import EmbedPaste from './pages/EmbedPaste';
 import { copyToClipboard } from './utils/clipboard';
 
 function copyPasteURL(pasteId) {
@@ -30,8 +29,16 @@ function App() {
       )}
       <Router>
         <Route exact path="/" component={() => <Home onPaste={onPaste} />} />
-        <Route exact path="/:pasteId" component={Paste} />
-        <Route exact path="/embed/:pasteId" component={EmbedPaste} />
+        <Route
+          exact
+          path="/:pasteId"
+          component={props => <Paste {...props} />}
+        />
+        <Route
+          exact
+          path="/embed/:pasteId"
+          component={props => <Paste embedded {...props} />}
+        />
       </Router>
     </div>
   );
