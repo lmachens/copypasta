@@ -18,6 +18,8 @@ Add environment variables in .env file. You can copy the .env.example and update
 cp .env.example .env
 ```
 
+Update SLACK_WEBHOOK_URL in .env
+
 To start the server and client at the same time:
 
 ```
