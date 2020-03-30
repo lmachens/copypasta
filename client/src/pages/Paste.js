@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '@emotion/styled';
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
 import useGetPaste from '../hooks/useGetPaste';
@@ -9,7 +10,14 @@ import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
 import useDeletePaste from '../hooks/useDeletePaste';
 
-function Paste({ match }) {
+const Content = styled.div`
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+function Paste({ match, embedded }) {
   const { pasteId } = match.params;
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
   const [{ oneTimeActive }, doDelete] = useDeletePaste(pasteId);
@@ -25,24 +33,34 @@ function Paste({ match }) {
           <Button onClick={doGet}>Try again</Button>
         </>
       )}
-      {paste && !paste.oneTimeView && <PasteBody paste={paste} />}
+      {paste && !paste.oneTimeView && (
+        <PasteBody paste={paste} embedded={embedded} />
+      )}
       {paste && paste.oneTimeView && (
-        <>
+        <Content>
           {!oneTimeActive && (
             <>
               <label>You can see it only once. Are you ready?</label>
               <WarningButton onClick={doDelete}>YES!!!</WarningButton>
             </>
           )}
-          {oneTimeActive && <PasteBody paste={paste} pasteId={pasteId} />}
-        </>
+          {oneTimeActive && (
+            <PasteBody
+              paste={paste}
+              pasteId={pasteId}
+              embedded={embedded}
+              oneTimeActive={oneTimeActive}
+            />
+          )}
+        </Content>
       )}
     </FullContainer>
   );
 }
 
 Paste.propTypes = {
-  match: PropTypes.object
+  match: PropTypes.object,
+  embedded: PropTypes.bool
 };
 
 export default Paste;
