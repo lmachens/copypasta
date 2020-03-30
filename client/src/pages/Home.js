@@ -81,7 +81,7 @@ function Home({ onPaste }) {
             author,
             expireTime,
             password,
-            encrypt: checkbox
+            isEncrypted: checkbox
           })
         }
         disabled={!pasteValue || !author || loading || (!password && checkbox)}

@@ -39,11 +39,11 @@ app.get('/api/pastes/:id', async (request, response) => {
 
 app.post('/api/pastes', async (request, response) => {
   try {
-    const paste = request.body;
-    const encryptedPaste = restructureAndEncrypt(paste);
-    // console.log(encryptedPaste);
-
-    const id = await setPaste(encryptedPaste);
+    let paste = request.body;
+    if (paste.isEncrypted) {
+      paste = restructureAndEncrypt(paste);
+    }
+    const id = await setPaste(paste);
     return response.json(id);
   } catch (error) {
     console.error(error);
