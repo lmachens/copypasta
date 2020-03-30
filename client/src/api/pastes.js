@@ -36,7 +36,7 @@ export function postPaste(paste) {
 
 export function deletePaste(pasteId) {
   return fetch(`/api/pastes/${pasteId}`, {
-    method: "DELETE"
+    method: 'DELETE'
   })
     .then(response => {
       if (response.status !== 200) {
