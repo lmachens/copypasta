@@ -80,10 +80,11 @@ function Home({ onPaste }) {
             value: pasteValue,
             author,
             expireTime,
-            password
+            password,
+            encrypt: checkbox
           })
         }
-        disabled={!pasteValue || !author || loading}
+        disabled={!pasteValue || !author || loading || (!password && checkbox)}
       />
       <RandomButtonStyled onClick={handleRandomClick} />
       {loading && <Loading />}
