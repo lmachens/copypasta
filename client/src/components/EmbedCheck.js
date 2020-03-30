@@ -13,7 +13,7 @@ export default function EmbedCheck(props) {
   return (
     <>
       <EmbedCheckContainer>
-        Should your paste be embeddable?
+        Should your pasta be embeddable?
         <EmbedCheckbox type="checkbox" {...props} />
       </EmbedCheckContainer>
     </>
