@@ -33,24 +33,29 @@ function Paste({ match, embedded }) {
           <Button onClick={doGet}>Try again</Button>
         </>
       )}
-      {paste && !paste.oneTimeView && (
-        <PasteBody paste={paste} embedded={embedded} />
-      )}
-      {paste && paste.oneTimeView && (
+
+      {paste && (
         <Content>
-          {!oneTimeActive && (
-            <>
-              <label>You can see it only once. Are you ready?</label>
-              <WarningButton onClick={doDelete}>YES!!!</WarningButton>
-            </>
+          {!paste.oneTimeView && (
+            <PasteBody paste={paste} embedded={embedded} />
           )}
-          {oneTimeActive && (
-            <PasteBody
-              paste={paste}
-              pasteId={pasteId}
-              embedded={embedded}
-              oneTimeActive={oneTimeActive}
-            />
+          {paste.oneTimeView && (
+            <>
+              {!oneTimeActive && (
+                <>
+                  <label>You can see it only once. Are you ready?</label>
+                  <WarningButton onClick={doDelete}>YES!!!</WarningButton>
+                </>
+              )}
+              {oneTimeActive && (
+                <PasteBody
+                  paste={paste}
+                  pasteId={pasteId}
+                  embedded={embedded}
+                  oneTimeActive={oneTimeActive}
+                />
+              )}
+            </>
           )}
         </Content>
       )}
