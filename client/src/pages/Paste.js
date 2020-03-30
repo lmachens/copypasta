@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from "@emotion/styled";
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
 import useGetPaste from '../hooks/useGetPaste';
@@ -8,12 +9,9 @@ import PropTypes from 'prop-types';
 import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
 import useDeletePaste from '../hooks/useDeletePaste';
-
-function Paste({ match }) {
-  const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
-  const [{ oneTimeActive }, doDelete] = useDeletePaste(match.params.pasteId);
-
 import PastaPoints from '../components/PastaPoints';
+import DateTime from '../components/DateTime';
+import Author from '../components/Author';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -26,6 +24,7 @@ const CreatedAt = styled(DateTime)`
 function Paste({ match }) {
   const { pasteId } = match.params;
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
+  const [{ oneTimeActive }, doDelete] = useDeletePaste(match.params.pasteId);
   return (
     <FullContainer>
       {loading && <Loading />}
