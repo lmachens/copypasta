@@ -1,5 +1,3 @@
-import api from './slackConnectData';
-
 export function getPaste(pasteId) {
   return fetch(`/api/pastes/${pasteId}`, {
     method: 'GET'
@@ -36,13 +34,9 @@ export function postPaste(paste) {
   }).then(response => response.json());
 }
 
-export function postPasteToSlack(slackPost) {
-  return fetch(api, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(slackPost)
+export function reportPaste(pasteId) {
+  return fetch(`/api/report/${pasteId}`, {
+    method: 'POST'
   });
 }
 

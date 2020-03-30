@@ -1,12 +1,5 @@
 import React from 'react';
-import { postPaste, postPasteToSlack } from '../api/pastes';
-
-function formatSlackPost(paste) {
-  const slackPost = {
-    text: `${paste.author}: \n${paste.value}`
-  };
-  return slackPost;
-}
+import { postPaste } from '../api/pastes';
 
 export default function usePostPaste() {
   const [pasteId, setPasteId] = React.useState(null);
@@ -18,8 +11,6 @@ export default function usePostPaste() {
       setLoading(true);
       setError(false);
       const pasteId = await postPaste(paste);
-      const slackPost = formatSlackPost(paste);
-      postPasteToSlack(slackPost);
       setPasteId(pasteId);
     } catch (error) {
       console.error(error);

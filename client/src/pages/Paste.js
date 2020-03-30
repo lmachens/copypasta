@@ -9,7 +9,7 @@ import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
 import ReportButton from '../components/ReportButton';
-import { postPasteToSlack } from '../api/pastes';
+import { reportPaste } from '../api/pastes';
 import EmbedButton from '../components/EmbedButton';
 import PastaPoints from '../components/PastaPoints';
 
@@ -33,15 +33,9 @@ function Paste({ match, embedded }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
 
   function handleReport() {
-    const reportIcon = '🚨REPORT🚨';
-    const pasteLink = `${window.location.origin}/${paste._id}`;
+    reportPaste(pasteId);
 
-    const slackReport = {
-      text: `${reportIcon} \n===\n${paste.author}: \n"${paste.value}"\n=== \nID: ${paste._id} \n${pasteLink} \n${reportIcon}`
-    };
-
-    alert('Report 🚨');
-    postPasteToSlack(slackReport);
+    alert('Reported 🚨');
   }
 
   return (
