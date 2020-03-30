@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 
-const EmbedCheckbox = styled.input``;
-
-const EmbedCheckContainer = styled.div`
+const Label = styled.label`
   display: flex;
   align-items: center;
   margin: 10px;
@@ -11,12 +9,10 @@ const EmbedCheckContainer = styled.div`
 
 function EmbedCheck(props) {
   return (
-    <>
-      <EmbedCheckContainer>
-        Should your pasta be embeddable?
-        <EmbedCheckbox type="checkbox" {...props} />
-      </EmbedCheckContainer>
-    </>
+    <Label>
+      Should your pasta be embeddable?
+      <input type="checkbox" {...props} />
+    </Label>
   );
 }
 
