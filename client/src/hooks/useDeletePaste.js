@@ -13,5 +13,5 @@ export default function useDeletePaste(pasteId) {
     }
   }
 
-  return [{ oneTimeActive }, doDelete];
+  return [oneTimeActive, doDelete];
 }

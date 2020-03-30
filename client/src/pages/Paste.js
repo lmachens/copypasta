@@ -20,7 +20,7 @@ const Content = styled.div`
 function Paste({ match, embedded }) {
   const { pasteId } = match.params;
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
-  const [{ oneTimeActive }, doDelete] = useDeletePaste(pasteId);
+  const [oneTimeActive, doDelete] = useDeletePaste(pasteId);
 
   return (
     <FullContainer>
