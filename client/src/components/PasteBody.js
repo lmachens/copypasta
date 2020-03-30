@@ -6,6 +6,8 @@ import Author from './Author';
 import PastaPoints from '../components/PastaPoints';
 import EmbedButton from '../components/EmbedButton';
 import SendEmailButton from '../components/EmailButton';
+// import Approval from '../components/Approval';
+import EmailInput from '../components/EmailInput';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -27,9 +29,14 @@ function PasteBody({ paste, pasteId, embedded, oneTimeActive }) {
       )}
       <PasteArea>{paste.value}</PasteArea>
       {!embedded && paste.isEmbeddable && <EmbedButton pasteId={pasteId} />}
-      <>
-        <SendEmailButton onClick={handleClickEvent}></SendEmailButton>
-      </>
+      <EmailInput
+      // placeholder="Enter the email of your recipient"
+      // value={mailInputValue}
+      // type="email"
+      // onChange={event => setMailInputValue(event.target.value)}
+      ></EmailInput>
+      <SendEmailButton></SendEmailButton>
+      {/* <div>{Approval(approval)}</div> */}
     </>
   );
 }

@@ -55,3 +55,33 @@ export function addPastaPoint(pasteId) {
     }
   }).then(response => response.json());
 }
+
+export function sendPastaViaMail(mailInputValue, pasteId) {
+  const proxy = 'https://cors-anywhere.herokuapp.com/';
+  const api = `${proxy}https://api.sendgrid.com/v3/mail/send`;
+
+  const emailBody = {
+    personalizations: [
+      {
+        to: [{ email: `${mailInputValue}`, name: 'John Doe' }],
+        subject: 'Your pasta 🤪!'
+      }
+    ],
+    content: [{ type: 'text/html', value: `${pasteId}` }],
+
+    from: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍝' },
+    reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
+  };
+
+  // setApproval(true);
+
+  return fetch(api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization:
+        'Bearer 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'
+    },
+    body: JSON.stringify(emailBody)
+  });
+}
