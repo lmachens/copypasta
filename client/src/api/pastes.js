@@ -45,6 +45,7 @@ export function deletePaste(pasteId) {
       return response;
     })
     .then(response => response.json());
+}
 
 export function addPastaPoint(pasteId) {
   return fetch(`/api/pastes/${pasteId}/pastaPoints`, {
