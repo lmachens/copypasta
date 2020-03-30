@@ -13,6 +13,19 @@ function Paste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
   const [{ oneTimeActive }, doDelete] = useDeletePaste(match.params.pasteId);
 
+import PastaPoints from '../components/PastaPoints';
+
+const PasteArea = styled.div`
+  margin: 20px;
+`;
+
+const CreatedAt = styled(DateTime)`
+  margin: 10px;
+`;
+
+function Paste({ match }) {
+  const { pasteId } = match.params;
+  const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
   return (
     <FullContainer>
       {loading && <Loading />}
@@ -34,6 +47,12 @@ function Paste({ match }) {
             </>
           )}
           {oneTimeActive && <PasteBody paste={paste} />}
+          <CreatedAt date={new Date(paste.createdAt)}>
+            {new Date(paste.createdAt).toDateString()}
+          </CreatedAt>
+          <Author name={paste.author} />
+          <PastaPoints pastaPoints={paste.pastaPoints} pasteId={pasteId} />
+          <PasteArea>{paste.value}</PasteArea>
         </>
       )}
     </FullContainer>
