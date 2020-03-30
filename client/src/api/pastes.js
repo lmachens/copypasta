@@ -34,6 +34,19 @@ export function postPaste(paste) {
   }).then(response => response.json());
 }
 
+export function deletePaste(pasteId) {
+  return fetch(`/api/pastes/${pasteId}`, {
+    method: 'DELETE'
+  })
+    .then(response => {
+      if (response.status !== 200) {
+        throw new Error(response.statusText);
+      }
+      return response;
+    })
+    .then(response => response.json());
+}
+
 export function addPastaPoint(pasteId) {
   return fetch(`/api/pastes/${pasteId}/pastaPoints`, {
     method: 'POST',

@@ -13,6 +13,7 @@ import { getRandomPaste } from '../api/pastes';
 import AuthorInput from '../components/AuthorInput';
 import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
+import SelectOneTime from '../components/SelectOneTime';
 import EmbedCheck from '../components/EmbedCheck';
 
 const PasteAreaStyled = styled(PasteArea)`
@@ -28,6 +29,7 @@ function Home({ onPaste }) {
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
+  const [oneTimeView, setOneTimeView] = React.useState(false);
   const [isEmbeddable, setIsEmbeddable] = React.useState(true);
 
   React.useEffect(() => {
@@ -60,15 +62,25 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
+      <SelectOneTime
+        disabled={isEmbeddable}
+        checked={oneTimeView}
+        onChange={() => setOneTimeView(!oneTimeView)}
+      />
       <EmbedCheck
+        disabled={oneTimeView}
         checked={isEmbeddable}
-        onChange={event => {
-          setIsEmbeddable(event.target.checked);
-        }}
+        onChange={event => setIsEmbeddable(event.target.checked)}
       />
       <SubmitButton
         onClick={() =>
-          doPost({ value: pasteValue, author, expireTime, isEmbeddable })
+          doPost({
+            value: pasteValue,
+            author,
+            expireTime,
+            oneTimeView,
+            isEmbeddable
+          })
         }
         disabled={!pasteValue || !author || loading}
       />

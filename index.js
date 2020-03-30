@@ -6,6 +6,7 @@ const path = require('path');
 const { initDatabase } = require('./lib/database');
 const {
   getPaste,
+  deletePaste,
   setPaste,
   getRandomPaste,
   createIndexes,
@@ -32,6 +33,16 @@ app.get('/api/pastes/:id', async (request, response) => {
     const pasteId = request.params.id;
     const paste = await getPaste(pasteId);
     return response.json(paste);
+  } catch (error) {
+    console.error(error);
+    return response.status(404).end('Error');
+  }
+});
+
+app.delete('/api/pastes/:id', async (request, response) => {
+  try {
+    const pasteId = request.params.id;
+    await deletePaste(pasteId);
   } catch (error) {
     console.error(error);
     return response.status(404).end('Error');
