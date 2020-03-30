@@ -65,8 +65,10 @@ function Home({ onPaste }) {
 
       <EncryptCheckbox
         value={checkbox}
-        onChange={checked => setCheckbox(checked === true)}
+        label={'Encrypt my Pasta'}
+        onChange={() => setCheckbox(!checkbox)}
       />
+
       <PasswordInput
         value={password}
         onChange={event => setPassword(event.target.value)}
@@ -74,7 +76,12 @@ function Home({ onPaste }) {
 
       <SubmitButton
         onClick={() =>
-          doPost({ value: pasteValue, author, expireTime, password })
+          doPost({
+            value: pasteValue,
+            author,
+            expireTime,
+            password
+          })
         }
         disabled={!pasteValue || !author || loading}
       />
