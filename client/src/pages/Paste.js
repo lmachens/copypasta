@@ -10,8 +10,11 @@ import WarningButton from '../components/WarningButton';
 import useDeletePaste from '../hooks/useDeletePaste';
 
 function Paste({ match }) {
-  const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
-  const [{ oneTimeActive }, doDelete] = useDeletePaste(match.params.pasteId);
+  const { pasteId } = match.params;
+  const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
+  const [{ oneTimeActive }, doDelete] = useDeletePaste(pasteId);
+
+  console.log(typeof pasteId);
 
   return (
     <FullContainer>
@@ -33,7 +36,7 @@ function Paste({ match }) {
               <WarningButton onClick={doDelete}>YES!!!</WarningButton>
             </>
           )}
-          {oneTimeActive && <PasteBody paste={paste} />}
+          {oneTimeActive && <PasteBody paste={paste} pasteId={pasteId} />}
         </>
       )}
     </FullContainer>
