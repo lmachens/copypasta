@@ -14,8 +14,6 @@ function Paste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
   const [{ oneTimeActive }, doDelete] = useDeletePaste(pasteId);
 
-  console.log(typeof pasteId);
-
   return (
     <FullContainer>
       {loading && <Loading />}
