@@ -33,3 +33,15 @@ export function postPaste(paste) {
     body: JSON.stringify(paste)
   }).then(response => response.json());
 }
+
+export function postEmail(api, emailBody) {
+  return fetch(api, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Authorization:
+        'Bearer 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'
+    },
+    body: JSON.stringify(emailBody)
+  });
+}

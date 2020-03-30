@@ -11,6 +11,7 @@ import PropTypes from 'prop-types';
 import SendEmailButton from '../components/EmailButton';
 import EmailInput from '../components/EmailInput';
 import Approval from '../components/Approval';
+import { postEmail } from '../api/pastes';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -44,17 +45,8 @@ function Paste({ match }) {
 
     setApproval(true);
 
-    return fetch(api, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization:
-          'Bearer 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'
-      },
-      body: JSON.stringify(emailBody)
-    });
+    postEmail(api, emailBody);
   }
-
   return (
     <FullContainer>
       {loading && <Loading />}
