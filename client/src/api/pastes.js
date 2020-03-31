@@ -75,3 +75,16 @@ export function sendPastaViaMail(email, pasteId) {
     })
   });
 }
+
+export function getDecryptedValue(pasteId, password) {
+  return fetch('/api/decrypt', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      pasteId,
+      password
+    })
+  }).then(response => response.json());
+}

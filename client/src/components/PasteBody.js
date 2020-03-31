@@ -6,9 +6,10 @@ import Author from './Author';
 import PastaPoints from '../components/PastaPoints';
 import EmbedButton from '../components/EmbedButton';
 import EmailForm from '../components/EmailForm';
-import { reportPaste } from '../api/pastes';
+import { reportPaste, getDecryptedValue } from '../api/pastes';
 import ReportButton from '../components/ReportButton';
 import PasswordInput from '../components/PasswordInput';
+import Button from '../components/Button';
 
 const PasteArea = styled.div`
   margin: 20px;
@@ -20,11 +21,17 @@ const CreatedAt = styled(DateTime)`
 
 function PasteBody({ paste, embedded, oneTimeActive }) {
   const [password, setPassword] = React.useState('');
+  const [decryptedValue, setDecryptedValue] = React.useState(null);
 
   function handleReport() {
     reportPaste(paste._id);
 
     alert('Reported 🚨');
+  }
+
+  async function handleDecrypt() {
+    const decryptedValue = await getDecryptedValue(paste._id, password);
+    setDecryptedValue(decryptedValue);
   }
 
   return (
@@ -36,11 +43,18 @@ function PasteBody({ paste, embedded, oneTimeActive }) {
       {!oneTimeActive && (
         <PastaPoints pastaPoints={paste.pastaPoints} pasteId={paste._id} />
       )}
-      <PasteArea>{paste.value}</PasteArea>
-      <PasswordInput
-        value={password}
-        onChange={event => setPassword(event.target.value)}
-      />
+      {(!paste.isEncrypted || decryptedValue) && (
+        <PasteArea>{decryptedValue || paste.value}</PasteArea>
+      )}
+      {paste.isEncrypted && !decryptedValue && (
+        <>
+          <PasswordInput
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+          />
+          <Button onClick={handleDecrypt}>Decrypt</Button>
+        </>
+      )}
       <EmailForm pasteId={paste._id} />
       <ReportButton onClick={handleReport}>Report that shit!</ReportButton>
       {!embedded && paste.isEmbeddable && <EmbedButton pasteId={paste._id} />}

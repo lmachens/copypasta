@@ -1,6 +1,6 @@
 // Load environment variables from .env file
 require('dotenv').config();
-const { encrypt } = require('./lib/crypto');
+const { decrypt, encrypt } = require('./lib/crypto');
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
@@ -140,6 +140,20 @@ app.post('/api/email/send', async (request, response) => {
       body: JSON.stringify(emailBody)
     });
     response.end('Email sent');
+  } catch (error) {
+    console.error(error);
+    response.status(400).end('Error');
+  }
+});
+
+app.post('/api/decrypt', async (request, response) => {
+  try {
+    const { pasteId, password } = request.body;
+
+    const paste = await getPaste(pasteId);
+    const decryptedValue = decrypt(paste.value, password);
+
+    response.json(decryptedValue);
   } catch (error) {
     console.error(error);
     response.status(400).end('Error');
