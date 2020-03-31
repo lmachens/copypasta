@@ -156,7 +156,7 @@ app.post('/api/decrypt', async (request, response) => {
     response.json(decryptedValue);
   } catch (error) {
     console.error(error);
-    response.status(400).end('Error');
+    response.status(400).end(error.reason);
   }
 });
 

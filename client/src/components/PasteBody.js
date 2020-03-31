@@ -30,8 +30,12 @@ function PasteBody({ paste, embedded, oneTimeActive }) {
   }
 
   async function handleDecrypt() {
-    const decryptedValue = await getDecryptedValue(paste._id, password);
-    setDecryptedValue(decryptedValue);
+    try {
+      const decryptedValue = await getDecryptedValue(paste._id, password);
+      setDecryptedValue(decryptedValue);
+    } catch (error) {
+      alert("Couldn't decrypt. STFU!");
+    }
   }
 
   return (
