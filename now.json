@@ -42,6 +42,7 @@
   "env": {
     "DB_URL": "@db_url",
     "DB_NAME": "@db_name",
-    "SLACK_WEBHOOK_URL": "@slack_webhook_url"
+    "SLACK_WEBHOOK_URL": "@slack_webhook_url",
+    "SENDGRID_API_TOKEN": "@sendgrid_api_token"
   }
 }

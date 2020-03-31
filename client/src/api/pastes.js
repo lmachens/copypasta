@@ -39,6 +39,7 @@ export function reportPaste(pasteId) {
     method: 'POST'
   });
 }
+
 export function deletePaste(pasteId) {
   return fetch(`/api/pastes/${pasteId}`, {
     method: 'DELETE'
@@ -59,4 +60,17 @@ export function addPastaPoint(pasteId) {
       'Content-Type': 'application/json'
     }
   }).then(response => response.json());
+}
+
+export function sendPastaViaMail(email, pasteId) {
+  return fetch('/api/email/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email,
+      pasteId
+    })
+  });
 }
