@@ -31,7 +31,7 @@ export function postPaste(paste) {
       'Content-Type': 'application/json',
       Encrypt: 'true'
     },
-    body: JSON.stringify(paste) //encryptedPasta
+    body: JSON.stringify(paste)
   }).then(response => response.json());
 }
 

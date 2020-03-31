@@ -28,9 +28,7 @@ function Paste({ match, embedded }) {
       {error && (
         <>
           <Alert>
-            <div>
-              <span>☠️☠️☠️</span>
-            </div>
+            <div>☠️☠️☠️</div>
             Can not get paste!
           </Alert>
           <Button onClick={doGet}>Try again</Button>

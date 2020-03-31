@@ -1,22 +1,10 @@
 import React from 'react';
-import styled from '@emotion/styled';
+
 import PropTypes from 'prop-types';
+import Checkbox from './Checkbox';
 
-const Label = styled.label`
-  margin: 10px 0px 5px 0px;
-`;
-
-const Checkbox = styled.input`
-  margin-left: 10px;
-`;
-
-export default function EncryptCheckbox({ value, onChange, label }) {
-  return (
-    <Label>
-      {label}
-      <Checkbox checked={value} onChange={onChange} type="checkbox" />
-    </Label>
-  );
+export default function EncryptCheckbox(props) {
+  return <Checkbox label="Encrypt my pasta:" {...props} />;
 }
 
 EncryptCheckbox.propTypes = {

@@ -24,9 +24,7 @@ function App() {
       <GlobalStyles />
       {showConfirmation && (
         <Confirmation>
-          <div>
-            <span>🎉🎉🎉</span>{' '}
-          </div>
+          <div>🎉🎉🎉</div>
           URL copied to your clipboard!
         </Confirmation>
       )}

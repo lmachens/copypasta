@@ -66,18 +66,14 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
-
       <EncryptCheckbox
         value={isEncrypted}
-        label={'Encrypt my Pasta'}
         onChange={() => setIsEncrypted(!isEncrypted)}
       />
-
       <PasswordInput
         value={password}
         onChange={event => setPassword(event.target.value)}
       />
-
       <SelectOneTime
         disabled={isEmbeddable}
         checked={oneTimeView}
