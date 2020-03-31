@@ -34,3 +34,44 @@ export function postPaste(paste) {
     body: JSON.stringify(paste) //encryptedPasta
   }).then(response => response.json());
 }
+
+export function reportPaste(pasteId) {
+  return fetch(`/api/report/${pasteId}`, {
+    method: 'POST'
+  });
+}
+
+export function deletePaste(pasteId) {
+  return fetch(`/api/pastes/${pasteId}`, {
+    method: 'DELETE'
+  })
+    .then(response => {
+      if (response.status !== 200) {
+        throw new Error(response.statusText);
+      }
+      return response;
+    })
+    .then(response => response.json());
+}
+
+export function addPastaPoint(pasteId) {
+  return fetch(`/api/pastes/${pasteId}/pastaPoints`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  }).then(response => response.json());
+}
+
+export function sendPastaViaMail(email, pasteId) {
+  return fetch('/api/email/send', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      email,
+      pasteId
+    })
+  });
+}

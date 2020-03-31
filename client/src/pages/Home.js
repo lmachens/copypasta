@@ -15,6 +15,8 @@ import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
 import EncryptCheckbox from '../components/EncryptCheckbox';
 import PasswordInput from '../components/PasswordInput';
+import SelectOneTime from '../components/SelectOneTime';
+import EmbedCheck from '../components/EmbedCheck';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -31,6 +33,8 @@ function Home({ onPaste }) {
   const [expireTime, setExpireTime] = React.useState(-1);
   const [isEncrypted, setIsEncrypted] = React.useState(false);
   const [password, setPassword] = React.useState('');
+  const [oneTimeView, setOneTimeView] = React.useState(false);
+  const [isEmbeddable, setIsEmbeddable] = React.useState(true);
 
   React.useEffect(() => {
     if (pasteId) {
@@ -74,14 +78,26 @@ function Home({ onPaste }) {
         onChange={event => setPassword(event.target.value)}
       />
 
+      <SelectOneTime
+        disabled={isEmbeddable}
+        checked={oneTimeView}
+        onChange={() => setOneTimeView(!oneTimeView)}
+      />
+      <EmbedCheck
+        disabled={oneTimeView}
+        checked={isEmbeddable}
+        onChange={event => setIsEmbeddable(event.target.checked)}
+      />
       <SubmitButton
         onClick={() =>
           doPost({
+            oneTimeView,
+            isEmbeddable,
             value: pasteValue,
             author,
             expireTime,
             password,
-            isEncrypted: isEncrypted
+            isEncrypted
           })
         }
         disabled={
