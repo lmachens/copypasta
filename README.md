@@ -18,7 +18,7 @@ Add environment variables in .env file. You can copy the .env.example and update
 cp .env.example .env
 ```
 
-Update SLACK_WEBHOOK_URL in .env
+Update SLACK_WEBHOOK_URL and SENDGRID_API_TOKEN in .env
 
 To start the server and client at the same time:
 

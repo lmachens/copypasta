@@ -23,7 +23,7 @@ function EmailForm({ pasteId }) {
         type="email"
         onChange={event => setEmail(event.target.value)}
       />
-      <Button>Send via Email 📧</Button>
+      <Button disabled={email.length === 0}>Send via Email 📧</Button>
     </form>
   );
 }

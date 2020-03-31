@@ -63,30 +63,16 @@ export function addPastaPoint(pasteId) {
 }
 
 export function sendPastaViaMail(email, pasteId) {
-  const proxy = 'https://cors-anywhere.herokuapp.com/';
-  const api = `${proxy}https://api.sendgrid.com/v3/mail/send`;
-
-  const emailBody = {
-    personalizations: [
-      {
-        to: [{ email: `${email}`, name: 'John Doe' }],
-        subject: 'Your pasta 🤪!'
-      }
-    ],
-    content: [{ type: 'text/html', value: `${pasteId}` }],
-
-    from: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍝' },
-
-    reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
-  };
-
-  return fetch(api, {
+  return fetch('/api/email/send', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
       Authorization:
         'Bearer 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'
     },
-    body: JSON.stringify(emailBody)
+    body: JSON.stringify({
+      email,
+      pasteId
+    })
   });
 }
