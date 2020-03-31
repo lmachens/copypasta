@@ -3,6 +3,7 @@ require('dotenv').config();
 
 const express = require('express');
 const path = require('path');
+const fetch = require('node-fetch');
 const { initDatabase } = require('./lib/database');
 const {
   getPaste,
@@ -54,6 +55,17 @@ app.post('/api/pastes', async (request, response) => {
     const paste = request.body;
     const id = await setPaste(paste);
 
+    const slackMessage = {
+      text: `${paste.author}: \n${paste.value}`
+    };
+    await fetch(process.env.SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(slackMessage)
+    });
+
     return response.json(id);
   } catch (error) {
     console.error(error);
@@ -66,6 +78,31 @@ app.post('/api/pastes/:id/pastaPoints', async (request, response) => {
     const pasteId = request.params.id;
     const paste = await incrementPastaPoints(pasteId);
     return response.json(paste);
+  } catch (error) {
+    console.error(error);
+    response.status(400).end('Error');
+  }
+});
+
+app.post('/api/report/:pasteId', async (request, response) => {
+  try {
+    const pasteId = request.params.pasteId;
+    const paste = await getPaste(pasteId);
+
+    const reportIcon = '🚨REPORT🚨';
+    const pasteLink = paste._id;
+    const slackMessage = {
+      text: `${reportIcon} \n===\n${paste.author}: \n"${paste.value}"\n=== \nID: ${paste._id} \n${pasteLink} \n${reportIcon}`
+    };
+
+    await fetch(process.env.SLACK_WEBHOOK_URL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(slackMessage)
+    });
+    return response.end('Notification sent');
   } catch (error) {
     console.error(error);
     response.status(400).end('Error');

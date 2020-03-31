@@ -41,6 +41,7 @@
   ],
   "env": {
     "DB_URL": "@db_url",
-    "DB_NAME": "@db_name"
+    "DB_NAME": "@db_name",
+    "SLACK_WEBHOOK_URL": "@slack_webhook_url"
   }
 }
