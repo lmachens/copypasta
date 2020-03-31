@@ -1,6 +1,6 @@
 // Load environment variables from .env file
 require('dotenv').config();
-const { restructureAndEncrypt } = require('./lib/crypto');
+const { encrypt } = require('./lib/crypto');
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
@@ -52,9 +52,10 @@ app.delete('/api/pastes/:id', async (request, response) => {
 
 app.post('/api/pastes', async (request, response) => {
   try {
-    let paste = request.body;
+    const { password, ...paste } = request.body;
+
     if (paste.isEncrypted) {
-      paste = restructureAndEncrypt(paste);
+      paste.value = encrypt(paste.value, password);
     }
     const id = await setPaste(paste);
 
