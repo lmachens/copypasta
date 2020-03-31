@@ -1,6 +1,6 @@
 // Load environment variables from .env file
 require('dotenv').config();
-
+const { decrypt, encrypt } = require('./lib/crypto');
 const express = require('express');
 const path = require('path');
 const fetch = require('node-fetch');
@@ -52,7 +52,11 @@ app.delete('/api/pastes/:id', async (request, response) => {
 
 app.post('/api/pastes', async (request, response) => {
   try {
-    const paste = request.body;
+    const { password, ...paste } = request.body;
+
+    if (paste.isEncrypted) {
+      paste.value = encrypt(paste.value, password);
+    }
     const id = await setPaste(paste);
 
     const slackMessage = {
@@ -139,6 +143,20 @@ app.post('/api/email/send', async (request, response) => {
   } catch (error) {
     console.error(error);
     response.status(400).end('Error');
+  }
+});
+
+app.post('/api/decrypt', async (request, response) => {
+  try {
+    const { pasteId, password } = request.body;
+
+    const paste = await getPaste(pasteId);
+    const decryptedValue = decrypt(paste.value, password);
+
+    response.json(decryptedValue);
+  } catch (error) {
+    console.error(error);
+    response.status(400).end(error.reason);
   }
 });
 

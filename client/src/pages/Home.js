@@ -13,6 +13,8 @@ import { getRandomPaste } from '../api/pastes';
 import AuthorInput from '../components/AuthorInput';
 import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
+import EncryptCheckbox from '../components/EncryptCheckbox';
+import PasswordInput from '../components/PasswordInput';
 import SelectOneTime from '../components/SelectOneTime';
 import EmbedCheck from '../components/EmbedCheck';
 
@@ -29,6 +31,8 @@ function Home({ onPaste }) {
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
+  const [isEncrypted, setIsEncrypted] = React.useState(false);
+  const [password, setPassword] = React.useState('');
   const [oneTimeView, setOneTimeView] = React.useState(false);
   const [isEmbeddable, setIsEmbeddable] = React.useState(true);
 
@@ -62,6 +66,14 @@ function Home({ onPaste }) {
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
+      <EncryptCheckbox
+        value={isEncrypted}
+        onChange={() => setIsEncrypted(!isEncrypted)}
+      />
+      <PasswordInput
+        value={password}
+        onChange={event => setPassword(event.target.value)}
+      />
       <SelectOneTime
         disabled={isEmbeddable}
         checked={oneTimeView}
@@ -75,14 +87,18 @@ function Home({ onPaste }) {
       <SubmitButton
         onClick={() =>
           doPost({
+            oneTimeView,
+            isEmbeddable,
             value: pasteValue,
             author,
             expireTime,
-            oneTimeView,
-            isEmbeddable
+            password,
+            isEncrypted
           })
         }
-        disabled={!pasteValue || !author || loading}
+        disabled={
+          !pasteValue || !author || loading || (!password && isEncrypted)
+        }
       />
       <RandomButtonStyled onClick={handleRandomClick} />
       {loading && <Loading />}
