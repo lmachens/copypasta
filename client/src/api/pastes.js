@@ -66,9 +66,7 @@ export function sendPastaViaMail(email, pasteId) {
   return fetch('/api/email/send', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
-      Authorization:
-        'Bearer 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'
+      'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       email,
