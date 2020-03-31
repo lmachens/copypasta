@@ -88,9 +88,8 @@ app.post('/api/report/:pasteId', async (request, response) => {
   try {
     const pasteId = request.params.pasteId;
     const paste = await getPaste(pasteId);
-
     const reportIcon = '🚨REPORT🚨';
-    const pasteLink = paste._id;
+    const pasteLink = `${request.headers.host}/pastes/${paste._id}`;
     const slackMessage = {
       text: `${reportIcon} \n===\n${paste.author}: \n"${paste.value}"\n=== \nID: ${paste._id} \n${pasteLink} \n${reportIcon}`
     };
