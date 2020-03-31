@@ -14,7 +14,7 @@ import AuthorInput from '../components/AuthorInput';
 import SelectTime from '../components/SelectTime';
 import PropTypes from 'prop-types';
 import EncryptCheckbox from '../components/EncryptCheckbox';
-import PasswordInput from '../components/EncryptInput';
+import PasswordInput from '../components/PasswordInput';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
@@ -29,7 +29,7 @@ function Home({ onPaste }) {
   const [{ pasteId, error, loading }, doPost] = usePostPaste();
   const [author, setAuthor] = React.useState('');
   const [expireTime, setExpireTime] = React.useState(-1);
-  const [checkbox, setCheckbox] = React.useState(false);
+  const [isEncrypted, setIsEncrypted] = React.useState(false);
   const [password, setPassword] = React.useState('');
 
   React.useEffect(() => {
@@ -64,9 +64,9 @@ function Home({ onPaste }) {
       ></SelectTime>
 
       <EncryptCheckbox
-        value={checkbox}
+        value={isEncrypted}
         label={'Encrypt my Pasta'}
-        onChange={() => setCheckbox(!checkbox)}
+        onChange={() => setIsEncrypted(!isEncrypted)}
       />
 
       <PasswordInput
@@ -81,10 +81,12 @@ function Home({ onPaste }) {
             author,
             expireTime,
             password,
-            isEncrypted: checkbox
+            isEncrypted: isEncrypted
           })
         }
-        disabled={!pasteValue || !author || loading || (!password && checkbox)}
+        disabled={
+          !pasteValue || !author || loading || (!password && isEncrypted)
+        }
       />
       <RandomButtonStyled onClick={handleRandomClick} />
       {loading && <Loading />}
