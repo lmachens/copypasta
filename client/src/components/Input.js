@@ -1,6 +1,6 @@
 import styled from '@emotion/styled';
 
-const EmailInput = styled.input`
+const Input = styled.input`
   border: 5px solid #8b7e7e;
   border-radius: 15px;
   box-shadow: 0px 5px 0px #b4b4b4;
@@ -10,4 +10,4 @@ const EmailInput = styled.input`
   text-align: center;
 `;
 
-export default EmailInput;
+export default Input;

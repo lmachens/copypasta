@@ -39,6 +39,7 @@ export function reportPaste(pasteId) {
     method: 'POST'
   });
 }
+
 export function deletePaste(pasteId) {
   return fetch(`/api/pastes/${pasteId}`, {
     method: 'DELETE'
@@ -61,14 +62,14 @@ export function addPastaPoint(pasteId) {
   }).then(response => response.json());
 }
 
-export function sendPastaViaMail(mailInputValue, pasteId) {
+export function sendPastaViaMail(email, pasteId) {
   const proxy = 'https://cors-anywhere.herokuapp.com/';
   const api = `${proxy}https://api.sendgrid.com/v3/mail/send`;
 
   const emailBody = {
     personalizations: [
       {
-        to: [{ email: `${mailInputValue}`, name: 'John Doe' }],
+        to: [{ email: `${email}`, name: 'John Doe' }],
         subject: 'Your pasta 🤪!'
       }
     ],
@@ -78,8 +79,6 @@ export function sendPastaViaMail(mailInputValue, pasteId) {
 
     reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
   };
-
-  // setApproval(true);
 
   return fetch(api, {
     method: 'POST',

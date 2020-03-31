@@ -6,21 +6,9 @@ import useGetPaste from '../hooks/useGetPaste';
 import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
 import PropTypes from 'prop-types';
-import ReportButton from '../components/ReportButton';
-import { reportPaste } from '../api/pastes';
-import EmbedButton from '../components/EmbedButton';
-import PastaPoints from '../components/PastaPoints';
-
-import DateTime from '../components/DateTime';
-import Author from '../components/Author';
-
-const PasteArea = styled.div`
-  margin: 20px;
-`;
-
-const CreatedAt = styled(DateTime)`
-  margin: 10px;
-`;
+import PasteBody from '../components/PasteBody';
+import WarningButton from '../components/WarningButton';
+import useDeletePaste from '../hooks/useDeletePaste';
 
 const Content = styled.div`
   overflow: auto;
@@ -32,12 +20,7 @@ const Content = styled.div`
 function Paste({ match, embedded }) {
   const { pasteId } = match.params;
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
-
-  function handleReport() {
-    reportPaste(pasteId);
-
-    alert('Reported 🚨');
-  }
+  const [oneTimeActive, doDelete] = useDeletePaste(pasteId);
 
   return (
     <FullContainer>
@@ -53,14 +36,27 @@ function Paste({ match, embedded }) {
 
       {paste && (
         <Content>
-          <CreatedAt date={new Date(paste.createdAt)}>
-            {new Date(paste.createdAt).toDateString()}
-          </CreatedAt>
-          <Author name={paste.author} />
-          <PastaPoints pastaPoints={paste.pastaPoints} pasteId={pasteId} />
-          <PasteArea>{paste.value}</PasteArea>
-          <ReportButton onClick={handleReport}>Report that shit!</ReportButton>
-          {!embedded && paste.isEmbeddable && <EmbedButton pasteId={pasteId} />}
+          {!paste.oneTimeView && (
+            <PasteBody paste={paste} embedded={embedded} />
+          )}
+          {paste.oneTimeView && (
+            <>
+              {!oneTimeActive && (
+                <>
+                  <label>You can see it only once. Are you ready?</label>
+                  <WarningButton onClick={doDelete}>YES!!!</WarningButton>
+                </>
+              )}
+              {oneTimeActive && (
+                <PasteBody
+                  paste={paste}
+                  pasteId={pasteId}
+                  embedded={embedded}
+                  oneTimeActive={oneTimeActive}
+                />
+              )}
+            </>
+          )}
         </Content>
       )}
     </FullContainer>
