@@ -8,7 +8,7 @@ import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
 import Author from '../components/Author';
 import PropTypes from 'prop-types';
-
+import PasswordInput from '../components/PasswordInput';
 const PasteArea = styled.div`
   margin: 20px;
 `;
@@ -19,6 +19,7 @@ const CreatedAt = styled(DateTime)`
 
 function Paste({ match }) {
   const [{ paste, error, loading }, doGet] = useGetPaste(match.params.pasteId);
+  const [password, setPassword] = React.useState('');
 
   return (
     <FullContainer>
@@ -41,6 +42,10 @@ function Paste({ match }) {
           </CreatedAt>
           <Author name={paste.author} />
           <PasteArea>{paste.value}</PasteArea>
+          <PasswordInput
+            value={password}
+            onChange={event => setPassword(event.target.value)}
+          />
         </>
       )}
     </FullContainer>
