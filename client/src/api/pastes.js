@@ -34,6 +34,11 @@ export function postPaste(paste) {
   }).then(response => response.json());
 }
 
+export function reportPaste(pasteId) {
+  return fetch(`/api/report/${pasteId}`, {
+    method: 'POST'
+  });
+}
 export function deletePaste(pasteId) {
   return fetch(`/api/pastes/${pasteId}`, {
     method: 'DELETE'
