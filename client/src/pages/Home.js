@@ -6,7 +6,7 @@ import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
 import { Redirect, useHistory } from 'react-router-dom';
-import FullContainer from '../components/FullContainer';
+import FullContainer from '../components/layout/FullContainer';
 import usePostPaste from '../hooks/usePostPaste';
 import RandomButton from '../components/RandomButton';
 import { getRandomPaste } from '../api/pastes';
