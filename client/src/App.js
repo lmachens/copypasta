@@ -24,7 +24,8 @@ function App() {
       <GlobalStyles />
       {showConfirmation && (
         <Confirmation>
-          <div>🎉🎉🎉</div>URL copied to your clipboard!
+          <div>🎉🎉🎉</div>
+          URL copied to your clipboard!
         </Confirmation>
       )}
       <Router>
