@@ -4,11 +4,11 @@ import Loading from '../components/Loading';
 import Alert from '../components/Alert';
 import useGetPaste from '../hooks/useGetPaste';
 import Button from '../components/Button';
-import FullContainer from '../components/layout/FullContainer';
 import PropTypes from 'prop-types';
 import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
 import useDeletePaste from '../hooks/useDeletePaste';
+import LayoutContainer from '../components/layout/LayoutContainer';
 
 const Content = styled.div`
   overflow: auto;
@@ -23,7 +23,7 @@ function Paste({ match, embedded }) {
   const [oneTimeActive, doDelete] = useDeletePaste(pasteId);
 
   return (
-    <FullContainer>
+    <LayoutContainer>
       {loading && <Loading />}
       {error && (
         <>
@@ -60,7 +60,7 @@ function Paste({ match, embedded }) {
           )}
         </Content>
       )}
-    </FullContainer>
+    </LayoutContainer>
   );
 }
 

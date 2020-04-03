@@ -6,7 +6,6 @@ import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
 import { Redirect, useHistory } from 'react-router-dom';
-import FullContainer from '../components/layout/FullContainer';
 import usePostPaste from '../hooks/usePostPaste';
 import RandomButton from '../components/RandomButton';
 import { getRandomPaste } from '../api/pastes';
@@ -17,13 +16,16 @@ import EncryptCheckbox from '../components/EncryptCheckbox';
 import PasswordInput from '../components/PasswordInput';
 import SelectOneTime from '../components/SelectOneTime';
 import EmbedCheck from '../components/EmbedCheck';
+import LayoutContainer from '../components/layout/LayoutContainer';
 
 const PasteAreaStyled = styled(PasteArea)`
   margin: 20px;
 `;
 
-const RandomButtonStyled = styled(RandomButton)`
-  margin-top: 12px;
+const ButtonContainer = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 `;
 
 function Home({ onPaste }) {
@@ -52,62 +54,72 @@ function Home({ onPaste }) {
   if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
   return (
-    <FullContainer>
+    <LayoutContainer>
       <Logo />
       <AuthorInput
         value={author}
         onChange={event => setAuthor(event.target.value)}
       />
+
       <PasteAreaStyled
         value={pasteValue}
         onChange={event => setPasteValue(event.target.value)}
       />
+
       <SelectTime
         value={expireTime}
         onChange={event => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
+
       <EncryptCheckbox
         value={isEncrypted}
         onChange={() => setIsEncrypted(!isEncrypted)}
       />
+
       <PasswordInput
         value={password}
         onChange={event => setPassword(event.target.value)}
       />
+
       <SelectOneTime
         disabled={isEmbeddable}
         checked={oneTimeView}
         onChange={() => setOneTimeView(!oneTimeView)}
       />
+
       <EmbedCheck
         disabled={oneTimeView}
         checked={isEmbeddable}
         onChange={event => setIsEmbeddable(event.target.checked)}
       />
-      <SubmitButton
-        onClick={() =>
-          doPost({
-            oneTimeView,
-            isEmbeddable,
-            value: pasteValue,
-            author,
-            expireTime,
-            password,
-            isEncrypted
-          })
-        }
-        disabled={
-          !pasteValue || !author || loading || (!password && isEncrypted)
-        }
-      />
-      <RandomButtonStyled onClick={handleRandomClick} />
+
+      <ButtonContainer>
+        <SubmitButton
+          onClick={() =>
+            doPost({
+              oneTimeView,
+              isEmbeddable,
+              value: pasteValue,
+              author,
+              expireTime,
+              password,
+              isEncrypted
+            })
+          }
+          disabled={
+            !pasteValue || !author || loading || (!password && isEncrypted)
+          }
+        />
+        <RandomButton onClick={handleRandomClick} />
+      </ButtonContainer>
+
       {loading && <Loading />}
       {error && (
         <Alert>
           <div>☠️☠️☠️</div>Can not post paste! Please try again.
         </Alert>
       )}
-    </FullContainer>
+    </LayoutContainer>
   );
 }
 

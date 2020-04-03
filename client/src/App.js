@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Paste from './pages/Paste';
 import Confirmation from './components/Confirmation';
 import { copyToClipboard } from './utils/clipboard';
+import FullContainer from './components/layout/FullContainer';
 
 function copyPasteURL(pasteId) {
   const pasteURL = `${window.location.origin}/${pasteId}`;
@@ -20,7 +21,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <FullContainer>
       <GlobalStyles />
       {showConfirmation && (
         <Confirmation>
@@ -41,7 +42,7 @@ function App() {
           component={props => <Paste embedded {...props} />}
         />
       </Router>
-    </div>
+    </FullContainer>
   );
 }
 
