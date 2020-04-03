@@ -1,7 +1,6 @@
 import React from 'react';
 import Logo from '../icons/Logo';
 import PasteArea from '../components/PasteArea';
-import styled from '@emotion/styled';
 import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
@@ -17,22 +16,8 @@ import PasswordInput from '../components/PasswordInput';
 import SelectOneTime from '../components/SelectOneTime';
 import EmbedCheck from '../components/EmbedCheck';
 import LayoutContainer from '../components/layout/LayoutContainer';
-
-const ButtonContainer = styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: space-evenly;
-`;
-
-const OptionsContainer = styled.div`
-  width: 100%;
-  padding: 10px;
-  display: flex;
-  flex-flow: column nowrap;
-  border: 5px solid #b4d982;
-  border-radius: 15px;
-  box-shadow: 0px 5px 0px #b4b4b4;
-`;
+import OptionsContainer from '../components/layout/OptionsContainer';
+import ButtonContainer from '../components/layout/ButtonContainer';
 
 function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState('');
