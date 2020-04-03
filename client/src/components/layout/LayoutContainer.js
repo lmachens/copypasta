@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 
 const LayoutContainer = styled.div`
-  max-width: 350px;
   margin: 2.5% 5%;
   display: flex;
   flex-direction: column;
