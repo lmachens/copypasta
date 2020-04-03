@@ -18,14 +18,20 @@ import SelectOneTime from '../components/SelectOneTime';
 import EmbedCheck from '../components/EmbedCheck';
 import LayoutContainer from '../components/layout/LayoutContainer';
 
-const PasteAreaStyled = styled(PasteArea)`
-  margin: 20px;
-`;
-
 const ButtonContainer = styled.div`
   width: 100%;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
+`;
+
+const OptionsContainer = styled.div`
+  width: 100%;
+  padding: 10px;
+  display: flex;
+  flex-flow: column nowrap;
+  border: 5px solid #b4d982;
+  border-radius: 15px;
+  box-shadow: 0px 5px 0px #b4b4b4;
 `;
 
 function Home({ onPaste }) {
@@ -61,37 +67,39 @@ function Home({ onPaste }) {
         onChange={event => setAuthor(event.target.value)}
       />
 
-      <PasteAreaStyled
+      <PasteArea
         value={pasteValue}
         onChange={event => setPasteValue(event.target.value)}
       />
 
-      <SelectTime
-        value={expireTime}
-        onChange={event => setExpireTime(parseInt(event.target.value))}
-      ></SelectTime>
+      <OptionsContainer>
+        <SelectTime
+          value={expireTime}
+          onChange={event => setExpireTime(parseInt(event.target.value))}
+        ></SelectTime>
 
-      <EncryptCheckbox
-        value={isEncrypted}
-        onChange={() => setIsEncrypted(!isEncrypted)}
-      />
+        <EncryptCheckbox
+          value={isEncrypted}
+          onChange={() => setIsEncrypted(!isEncrypted)}
+        />
 
-      <PasswordInput
-        value={password}
-        onChange={event => setPassword(event.target.value)}
-      />
+        <PasswordInput
+          value={password}
+          onChange={event => setPassword(event.target.value)}
+        />
 
-      <SelectOneTime
-        disabled={isEmbeddable}
-        checked={oneTimeView}
-        onChange={() => setOneTimeView(!oneTimeView)}
-      />
+        <SelectOneTime
+          disabled={isEmbeddable}
+          checked={oneTimeView}
+          onChange={() => setOneTimeView(!oneTimeView)}
+        />
 
-      <EmbedCheck
-        disabled={oneTimeView}
-        checked={isEmbeddable}
-        onChange={event => setIsEmbeddable(event.target.checked)}
-      />
+        <EmbedCheck
+          disabled={oneTimeView}
+          checked={isEmbeddable}
+          onChange={event => setIsEmbeddable(event.target.checked)}
+        />
+      </OptionsContainer>
 
       <ButtonContainer>
         <SubmitButton
