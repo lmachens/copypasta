@@ -1,4 +1,4 @@
-<a href='https://copypasta.lmachens.now.sh/'><img src="./.github/logo.jpg" alt="copypasta" align="right" height="212" width="188" /></a>
+<a href="https://copypasta.lmachens.now.sh/" target="_blank"><img src="./.github/logo.jpg" alt="copypasta" align="right" height="212" width="188" /></a>
 
 # copypasta
 
