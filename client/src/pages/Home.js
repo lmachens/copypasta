@@ -5,7 +5,7 @@ import styled from '@emotion/styled';
 import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
-import { Redirect, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import FullContainer from '../components/FullContainer';
 import usePostPaste from '../hooks/usePostPaste';
 import RandomButton from '../components/RandomButton';
@@ -35,21 +35,19 @@ function Home({ onPaste }) {
   const [password, setPassword] = React.useState('');
   const [oneTimeView, setOneTimeView] = React.useState(false);
   const [isEmbeddable, setIsEmbeddable] = React.useState(true);
+  const history = useHistory();
 
   React.useEffect(() => {
     if (pasteId) {
       onPaste(pasteId);
+      history.push(`/${pasteId}`);
     }
   }, [pasteId]);
-
-  const history = useHistory();
 
   async function handleRandomClick() {
     const paste = await getRandomPaste();
     history.push(`/${paste._id}`);
   }
-
-  if (pasteId) return <Redirect to={`/${pasteId}`} />;
 
   return (
     <FullContainer>
