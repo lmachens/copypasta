@@ -10,8 +10,8 @@ const Button = styled.button`
   box-shadow: 0px 5px 0px #b4b4b4;
   margin: 10px;
   outline: none;
-  cursor: ${props => (props.disabled ? 'default' : 'pointer')};
-  background-color: ${props => (props.disabled ? '#FF9E99' : 'transparent')};
+  cursor: ${(props) => (props.disabled ? 'default' : 'pointer')};
+  background-color: ${(props) => (props.disabled ? '#FF9E99' : 'transparent')};
 `;
 
 function PastaPoints({ pastaPoints, pasteId }) {
@@ -38,7 +38,7 @@ function PastaPoints({ pastaPoints, pasteId }) {
 
 PastaPoints.propTypes = {
   pastaPoints: PropTypes.number,
-  pasteId: PropTypes.string
+  pasteId: PropTypes.string,
 };
 
 export default PastaPoints;

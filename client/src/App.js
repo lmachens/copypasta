@@ -33,12 +33,12 @@ function App() {
         <Route
           exact
           path="/:pasteId"
-          component={props => <Paste {...props} />}
+          component={(props) => <Paste {...props} />}
         />
         <Route
           exact
           path="/embed/:pasteId"
-          component={props => <Paste embedded {...props} />}
+          component={(props) => <Paste embedded {...props} />}
         />
       </Router>
     </div>

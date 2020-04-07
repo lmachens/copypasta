@@ -21,7 +21,7 @@ function EmailForm({ pasteId }) {
         placeholder="Enter the email of your recipient"
         value={email}
         type="email"
-        onChange={event => setEmail(event.target.value)}
+        onChange={(event) => setEmail(event.target.value)}
       />
       <Button disabled={email.length === 0}>Send via Email 📧</Button>
     </form>
@@ -29,7 +29,7 @@ function EmailForm({ pasteId }) {
 }
 
 EmailForm.propTypes = {
-  pasteId: PropTypes.string
+  pasteId: PropTypes.string,
 };
 
 export default EmailForm;

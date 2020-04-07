@@ -56,15 +56,15 @@ function Home({ onPaste }) {
       <Logo />
       <AuthorInput
         value={author}
-        onChange={event => setAuthor(event.target.value)}
+        onChange={(event) => setAuthor(event.target.value)}
       />
       <PasteAreaStyled
         value={pasteValue}
-        onChange={event => setPasteValue(event.target.value)}
+        onChange={(event) => setPasteValue(event.target.value)}
       />
       <SelectTime
         value={expireTime}
-        onChange={event => setExpireTime(parseInt(event.target.value))}
+        onChange={(event) => setExpireTime(parseInt(event.target.value))}
       ></SelectTime>
       <EncryptCheckbox
         value={isEncrypted}
@@ -72,7 +72,7 @@ function Home({ onPaste }) {
       />
       <PasswordInput
         value={password}
-        onChange={event => setPassword(event.target.value)}
+        onChange={(event) => setPassword(event.target.value)}
       />
       <SelectOneTime
         disabled={isEmbeddable}
@@ -82,7 +82,7 @@ function Home({ onPaste }) {
       <EmbedCheck
         disabled={oneTimeView}
         checked={isEmbeddable}
-        onChange={event => setIsEmbeddable(event.target.checked)}
+        onChange={(event) => setIsEmbeddable(event.target.checked)}
       />
       <SubmitButton
         onClick={() =>
@@ -93,7 +93,7 @@ function Home({ onPaste }) {
             author,
             expireTime,
             password,
-            isEncrypted
+            isEncrypted,
           })
         }
         disabled={
@@ -112,7 +112,7 @@ function Home({ onPaste }) {
 }
 
 Home.propTypes = {
-  onPaste: PropTypes.func
+  onPaste: PropTypes.func,
 };
 
 export default Home;

@@ -9,7 +9,7 @@ function EmbedCheck(props) {
 EmbedCheck.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  checked: PropTypes.bool
+  checked: PropTypes.bool,
 };
 
 export default EmbedCheck;

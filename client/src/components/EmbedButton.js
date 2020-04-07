@@ -26,7 +26,7 @@ function EmbedButton(props) {
 }
 
 EmbedButton.propTypes = {
-  pasteId: PropTypes.string
+  pasteId: PropTypes.string,
 };
 
 export default EmbedButton;

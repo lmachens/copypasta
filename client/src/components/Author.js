@@ -11,7 +11,7 @@ function Author({ name }) {
 }
 
 Author.propTypes = {
-  name: PropTypes.string
+  name: PropTypes.string,
 };
 
 export default Author;
