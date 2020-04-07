@@ -9,6 +9,7 @@ import PropTypes from 'prop-types';
 import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
 import useDeletePaste from '../hooks/useDeletePaste';
+import { useParams } from 'react-router-dom';
 
 const Content = styled.div`
   overflow: auto;
@@ -17,8 +18,8 @@ const Content = styled.div`
   align-items: center;
 `;
 
-function Paste({ match, embedded }) {
-  const { pasteId } = match.params;
+function Paste({ embedded }) {
+  const { pasteId } = useParams();
   const [{ paste, error, loading }, doGet] = useGetPaste(pasteId);
   const [oneTimeActive, doDelete] = useDeletePaste(pasteId);
 

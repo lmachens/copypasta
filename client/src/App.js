@@ -29,17 +29,15 @@ function App() {
         </Confirmation>
       )}
       <Router>
-        <Route exact path="/" component={() => <Home onPaste={onPaste} />} />
-        <Route
-          exact
-          path="/:pasteId"
-          component={(props) => <Paste {...props} />}
-        />
-        <Route
-          exact
-          path="/embed/:pasteId"
-          component={(props) => <Paste embedded {...props} />}
-        />
+        <Route exact path="/">
+          <Home onPaste={onPaste} />
+        </Route>
+        <Route exact path="/:pasteId">
+          <Paste />
+        </Route>
+        <Route exact path="/embed/:pasteId">
+          <Paste embedded />
+        </Route>
       </Router>
     </div>
   );
