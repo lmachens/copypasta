@@ -1,7 +1,6 @@
 import React from 'react';
 import Logo from '../icons/Logo';
 import PasteArea from '../components/PasteArea';
-import styled from '@emotion/styled';
 import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/Loading';
 import Alert from '../components/Alert';
@@ -20,14 +19,6 @@ import LayoutContainer from '../components/layout/LayoutContainer';
 import OptionsContainer from '../components/layout/OptionsContainer';
 import ButtonContainer from '../components/layout/ButtonContainer';
 import InputContainer from '../components/layout/InputContainer';
-
-const StyledLogo = styled(Logo)`
-  height: 100px;
-  width: 100%;
-  @media (min-width: 768px) {
-    height: 300px;
-  }
-`;
 
 function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState('');
@@ -56,7 +47,7 @@ function Home({ onPaste }) {
 
   return (
     <LayoutContainer>
-      <StyledLogo />
+      <Logo />
 
       <InputContainer>
         <AuthorInput
