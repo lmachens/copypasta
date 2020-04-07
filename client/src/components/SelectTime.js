@@ -29,7 +29,7 @@ function SelectTime({ onChange, value }) {
 
 SelectTime.propTypes = {
   onChange: PropTypes.func,
-  value: PropTypes.number
+  value: PropTypes.number,
 };
 
 export default SelectTime;

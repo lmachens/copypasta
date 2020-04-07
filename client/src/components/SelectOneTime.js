@@ -20,7 +20,7 @@ function SelectOneTime(props) {
 SelectOneTime.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
-  checked: PropTypes.bool
+  checked: PropTypes.bool,
 };
 
 export default SelectOneTime;

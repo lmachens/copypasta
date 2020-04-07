@@ -54,7 +54,7 @@ function PasteBody({ paste, embedded, oneTimeActive }) {
         <>
           <PasswordInput
             value={password}
-            onChange={event => setPassword(event.target.value)}
+            onChange={(event) => setPassword(event.target.value)}
           />
           <Button onClick={handleDecrypt}>Decrypt</Button>
         </>
@@ -70,7 +70,7 @@ PasteBody.propTypes = {
   paste: PropTypes.object,
   pasteId: PropTypes.string,
   embedded: PropTypes.bool,
-  oneTimeActive: PropTypes.bool
+  oneTimeActive: PropTypes.bool,
 };
 
 export default PasteBody;

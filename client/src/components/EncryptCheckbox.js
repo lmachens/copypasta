@@ -10,5 +10,5 @@ export default function EncryptCheckbox(props) {
 EncryptCheckbox.propTypes = {
   value: PropTypes.bool,
   onChange: PropTypes.func,
-  label: PropTypes.string
+  label: PropTypes.string,
 };

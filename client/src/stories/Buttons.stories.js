@@ -3,7 +3,7 @@ import SubmitButton from '../components/SubmitButton';
 import VoteButton from '../components/VoteButton';
 
 export default {
-  title: 'Buttons'
+  title: 'Buttons',
 };
 
 export const Submit = () => <SubmitButton />;

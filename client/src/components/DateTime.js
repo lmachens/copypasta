@@ -16,7 +16,7 @@ function DateTime({ date }) {
 }
 
 DateTime.propTypes = {
-  date: PropTypes.instanceOf(Date)
+  date: PropTypes.instanceOf(Date),
 };
 
 export default DateTime;

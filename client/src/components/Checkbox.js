@@ -7,7 +7,7 @@ const Label = styled.label`
   align-items: center;
   justify-content: center;
   margin: 10px;
-  color: ${props => (props.disabled ? '#666' : 'inherit')};
+  color: ${(props) => (props.disabled ? '#666' : 'inherit')};
 `;
 
 function Checkbox({ disabled, onChange, checked, label }) {
@@ -28,7 +28,7 @@ Checkbox.propTypes = {
   disabled: PropTypes.bool,
   onChange: PropTypes.func,
   checked: PropTypes.bool,
-  label: PropTypes.string
+  label: PropTypes.string,
 };
 
 export default Checkbox;

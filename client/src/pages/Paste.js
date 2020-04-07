@@ -66,7 +66,7 @@ function Paste({ match, embedded }) {
 
 Paste.propTypes = {
   match: PropTypes.object,
-  embedded: PropTypes.bool
+  embedded: PropTypes.bool,
 };
 
 export default Paste;

@@ -11,7 +11,7 @@ const {
   setPaste,
   getRandomPaste,
   createIndexes,
-  incrementPastaPoints
+  incrementPastaPoints,
 } = require('./lib/pastes');
 
 const app = express();
@@ -60,14 +60,14 @@ app.post('/api/pastes', async (request, response) => {
     const id = await setPaste(paste);
 
     const slackMessage = {
-      text: `${paste.author}: \n${paste.value}`
+      text: `${paste.author}: \n${paste.value}`,
     };
     await fetch(process.env.SLACK_WEBHOOK_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(slackMessage)
+      body: JSON.stringify(slackMessage),
     });
 
     return response.json(id);
@@ -95,15 +95,15 @@ app.post('/api/report/:pasteId', async (request, response) => {
     const reportIcon = '🚨REPORT🚨';
     const pasteLink = `${request.headers.host}/pastes/${paste._id}`;
     const slackMessage = {
-      text: `${reportIcon} \n===\n${paste.author}: \n"${paste.value}"\n=== \nID: ${paste._id} \n${pasteLink} \n${reportIcon}`
+      text: `${reportIcon} \n===\n${paste.author}: \n"${paste.value}"\n=== \nID: ${paste._id} \n${pasteLink} \n${reportIcon}`,
     };
 
     await fetch(process.env.SLACK_WEBHOOK_URL, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(slackMessage)
+      body: JSON.stringify(slackMessage),
     });
     response.end('Notification sent');
   } catch (error) {
@@ -121,23 +121,23 @@ app.post('/api/email/send', async (request, response) => {
       personalizations: [
         {
           to: [{ email: `${email}`, name: 'John Doe' }],
-          subject: 'Your pasta 🤪!'
-        }
+          subject: 'Your pasta 🤪!',
+        },
       ],
       content: [
-        { type: 'text/html', value: `${paste.author}: ${paste.value}` }
+        { type: 'text/html', value: `${paste.author}: ${paste.value}` },
       ],
       from: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍝' },
-      reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' }
+      reply_to: { email: 'copypaste@gmx.de', name: 'CopyPasta 🍜' },
     };
 
     await fetch('https://api.sendgrid.com/v3/mail/send', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.SENDGRID_API_TOKEN}`
+        Authorization: `Bearer ${process.env.SENDGRID_API_TOKEN}`,
       },
-      body: JSON.stringify(emailBody)
+      body: JSON.stringify(emailBody),
     });
     response.end('Email sent');
   } catch (error) {
