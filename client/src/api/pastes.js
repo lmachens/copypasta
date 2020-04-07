@@ -36,8 +36,12 @@ export function postPaste(paste) {
 }
 
 export function reportPaste(pasteId) {
-  return fetch(`/api/report/${pasteId}`, {
-    method: 'POST'
+  return fetch(`/api/reports`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({ pasteId })
   });
 }
 
@@ -77,13 +81,12 @@ export function sendPastaViaMail(email, pasteId) {
 }
 
 export function getDecryptedValue(pasteId, password) {
-  return fetch('/api/decrypt', {
+  return fetch(`/api/pastes/${pasteId}/decrypt`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      pasteId,
       password
     })
   }).then(response => response.json());

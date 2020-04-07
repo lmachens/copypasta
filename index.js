@@ -6,6 +6,7 @@ const { initDatabase } = require('./lib/database');
 const { createIndexes } = require('./lib/models/pastes');
 const pastes = require('./lib/routes/pastes');
 const email = require('./lib/routes/email');
+const reports = require('./lib/routes/reports');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(express.json());
 
 app.use('/api/pastes', pastes);
 app.use('/api/email', email);
+app.use('/api/reports', reports);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
