@@ -15,8 +15,8 @@ export const flyFromRight = keyframes`
 }
 `;
 
-const Alert = styled.div`
-  border: 5px solid red;
+const Notification = styled.div`
+  border: 5px solid #8b7e7e;
   border-radius: 15px;
   box-shadow: 0px 5px 0px #b4b4b4;
   margin: 10px;
@@ -29,4 +29,4 @@ const Alert = styled.div`
   animation: ${flyFromRight} 5s ease-in-out;
 `;
 
-export default Alert;
+export default Notification;

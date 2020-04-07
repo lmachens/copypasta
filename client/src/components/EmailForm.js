@@ -23,7 +23,12 @@ function EmailForm({ pasteId }) {
         type="email"
         onChange={(event) => setEmail(event.target.value)}
       />
-      <Button disabled={email.length === 0}>Send via Email 📧</Button>
+      <Button disabled={email.length === 0}>
+        Send via Email{' '}
+        <span role="img" aria-label="mail-emoji">
+          📧
+        </span>
+      </Button>
     </form>
   );
 }

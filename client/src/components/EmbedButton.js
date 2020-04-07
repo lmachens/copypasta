@@ -1,6 +1,6 @@
 import React from 'react';
 import Button from './Button';
-import Confirmation from './Confirmation';
+import Confirmation from './notifications/Confirmation';
 import PropTypes from 'prop-types';
 import { copyToClipboard } from '../utils/clipboard';
 
