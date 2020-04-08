@@ -3,7 +3,7 @@ import GlobalStyles from './GlobalStyles';
 import Home from './pages/Home';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Paste from './pages/Paste';
-import Confirmation from './components/Confirmation';
+import Confirmation from './components/notifications/Confirmation';
 import { copyToClipboard } from './utils/clipboard';
 
 function copyPasteURL(pasteId) {
@@ -23,10 +23,7 @@ function App() {
     <div>
       <GlobalStyles />
       {showConfirmation && (
-        <Confirmation>
-          <div>🎉🎉🎉</div>
-          URL copied to your clipboard!
-        </Confirmation>
+        <Confirmation>URL copied to your clipboard!</Confirmation>
       )}
       <Router>
         <Route exact path="/">

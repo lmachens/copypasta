@@ -4,7 +4,7 @@ import PasteArea from '../components/PasteArea';
 import styled from '@emotion/styled';
 import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/Loading';
-import Alert from '../components/Alert';
+import Alert from '../components/notifications/Alert';
 import { useHistory } from 'react-router-dom';
 import FullContainer from '../components/FullContainer';
 import usePostPaste from '../hooks/usePostPaste';
@@ -100,11 +100,7 @@ function Home({ onPaste }) {
       />
       <RandomButtonStyled onClick={handleRandomClick} />
       {loading && <Loading />}
-      {error && (
-        <Alert>
-          <div>☠️☠️☠️</div>Can not post paste! Please try again.
-        </Alert>
-      )}
+      {error && <Alert>Can not post paste! Please try again.</Alert>}
     </FullContainer>
   );
 }

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '@emotion/styled';
 import Loading from '../components/Loading';
-import Alert from '../components/Alert';
+import Alert from '../components/notifications/Alert';
 import useGetPaste from '../hooks/useGetPaste';
 import Button from '../components/Button';
 import FullContainer from '../components/FullContainer';
@@ -28,10 +28,7 @@ function Paste({ embedded }) {
       {loading && <Loading />}
       {error && (
         <>
-          <Alert>
-            <div>☠️☠️☠️</div>
-            Can not get paste!
-          </Alert>
+          <Alert>Can not get paste!</Alert>
           <Button onClick={doGet}>Try again</Button>
         </>
       )}
