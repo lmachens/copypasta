@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "build": "cd client && npm run build",
+    "heroku-prebuild": "cd client && npm i",
+    "build": "cd client && npm run build && npm run build-storybook",
     "dev-client": "cd client && npm start",
     "dev-server": "nodemon index.js",
     "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run dev-client\"",
@@ -44,5 +45,9 @@
   "lint-staged": {
     "*.{js,jsx}": "eslint --fix",
     "*.{js,jsx,ts,tsx,md,html,css}": "prettier --write"
-  }
+  },
+  "cacheDirectories": [
+    "client/node_modules",
+    "node_modules"
+  ]
 }
