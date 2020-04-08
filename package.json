@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "heroku-prebuild": "cd client && npm i",
-    "build": "cd client && npm run build",
+    "build": "cd client && npm run build && npm run build-storybook",
     "dev-client": "cd client && npm start",
     "dev-server": "nodemon index.js",
     "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run dev-client\"",
