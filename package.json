@@ -1,16 +1,13 @@
 {
   "name": "copypasta",
   "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
+  "private": true,
   "scripts": {
-    "client": "cd client && npm start",
     "build": "cd client && npm run build",
-    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run client\"",
-    "dev:server": "npm run build && cd .. && npm start",
-    "server": "nodemon index.js",
-    "start": "node index.js",
-    "heroku-prebuild": "cd client && npm ci --only=prod"
+    "dev-client": "cd client && npm start",
+    "dev-server": "nodemon index.js",
+    "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run dev-client\"",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
