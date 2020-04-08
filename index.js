@@ -8,6 +8,7 @@ const pastes = require('./lib/routes/pastes');
 const email = require('./lib/routes/email');
 const reports = require('./lib/routes/reports');
 
+const port = process.env.PORT || 8080;
 const app = express();
 
 // Parse application/json for all request
@@ -33,7 +34,7 @@ initDatabase(process.env.DB_URL, process.env.DB_NAME).then(async () => {
   await createIndexes();
   console.log('Indexes created');
 
-  app.listen(process.env.PORT, () => {
-    console.log(`Server is running on http://localhost:${process.env.PORT}`);
+  app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
   });
 });
