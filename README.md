@@ -22,14 +22,15 @@ cp .env.example .env
 
 Update SLACK_WEBHOOK_URL and SENDGRID_API_TOKEN in .env
 
-To start the server and client at the same time:
+To start the server and client in development mode at the same time:
 
 ```
 npm run dev
 ```
 
-Running the production build on localhost. This will create a production build, then Node will serve the app on http://localhost:8080.
+If you like to run the production build, you have to build the client first.
 
 ```
-NODE_ENV=production npm run dev:server
+npm run build
+npm start
 ```
