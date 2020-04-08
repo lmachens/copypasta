@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "heroku-prebuild": "cd client && npm i",
     "build": "cd client && npm run build && npm run build-storybook",
     "dev-client": "cd client && npm start",
     "dev-server": "nodemon index.js",
