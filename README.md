@@ -20,7 +20,7 @@ Add environment variables in .env file. You can copy the .env.example and update
 cp .env.example .env
 ```
 
-Update SLACK_WEBHOOK_URL and SENDGRID_API_TOKEN in .env
+Next, update SLACK_WEBHOOK_URL and SENDGRID_API_TOKEN in `.env`. Slack and SendGrid integrations are optional.
 
 To start the server and client in development mode at the same time:
 
