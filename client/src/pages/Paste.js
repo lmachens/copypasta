@@ -4,7 +4,7 @@ import Loading from '../components/Loading';
 import Alert from '../components/notifications/Alert';
 import useGetPaste from '../hooks/useGetPaste';
 import Button from '../components/Button';
-import FullContainer from '../components/FullContainer';
+import FullContainer from '../components/layout/FullContainer';
 import PropTypes from 'prop-types';
 import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
