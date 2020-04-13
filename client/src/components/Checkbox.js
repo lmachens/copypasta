@@ -3,9 +3,6 @@ import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 
 const Label = styled.label`
-  display: flex;
-  align-items: center;
-  justify-content: center;
   color: ${(props) => (props.disabled ? '#666' : 'inherit')};
 `;
 

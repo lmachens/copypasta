@@ -1,18 +1,13 @@
 import React from 'react';
-import styled from '@emotion/styled';
 import PropTypes from 'prop-types';
 import Checkbox from './Checkbox';
 
-const Container = styled.div`
-  text-align: center;
-`;
-
 function SelectOneTime(props) {
   return (
-    <Container>
+    <div>
       <legend>Should your pasta be available for only one view?</legend>
       <Checkbox label="Yes, that sounds cool" {...props} />
-    </Container>
+    </div>
   );
 }
 
