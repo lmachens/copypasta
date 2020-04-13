@@ -11,7 +11,7 @@ function GlobalStyle() {
           box-sizing: border-box;
         }
         body {
-          font-size: 16px;
+          font-size: 1rem;
           margin: 0;
           font-family: RobotoMono-Regular, Roboto Mono;
         }
