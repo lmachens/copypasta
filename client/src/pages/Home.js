@@ -16,6 +16,9 @@ import EncryptCheckbox from '../components/EncryptCheckbox';
 import PasswordInput from '../components/PasswordInput';
 import SelectOneTime from '../components/SelectOneTime';
 import EmbedCheck from '../components/EmbedCheck';
+import OptionsContainer from '../components/layout/OptionsContainer';
+import InputContainer from '../components/layout/InputContainer';
+import ButtonContainer from '../components/layout/ButtonContainer';
 
 function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState('');
@@ -43,53 +46,59 @@ function Home({ onPaste }) {
   return (
     <FullContainer>
       <Logo />
-      <AuthorInput
-        value={author}
-        onChange={(event) => setAuthor(event.target.value)}
-      />
-      <PasteArea
-        value={pasteValue}
-        onChange={(event) => setPasteValue(event.target.value)}
-      />
-      <SelectTime
-        value={expireTime}
-        onChange={(event) => setExpireTime(parseInt(event.target.value))}
-      ></SelectTime>
-      <EncryptCheckbox
-        value={isEncrypted}
-        onChange={() => setIsEncrypted(!isEncrypted)}
-      />
-      <PasswordInput
-        value={password}
-        onChange={(event) => setPassword(event.target.value)}
-      />
-      <SelectOneTime
-        disabled={isEmbeddable}
-        checked={oneTimeView}
-        onChange={() => setOneTimeView(!oneTimeView)}
-      />
-      <EmbedCheck
-        disabled={oneTimeView}
-        checked={isEmbeddable}
-        onChange={(event) => setIsEmbeddable(event.target.checked)}
-      />
-      <SubmitButton
-        onClick={() =>
-          doPost({
-            oneTimeView,
-            isEmbeddable,
-            value: pasteValue,
-            author,
-            expireTime,
-            password,
-            isEncrypted,
-          })
-        }
-        disabled={
-          !pasteValue || !author || loading || (!password && isEncrypted)
-        }
-      />
-      <RandomButton onClick={handleRandomClick} />
+      <InputContainer>
+        <AuthorInput
+          value={author}
+          onChange={(event) => setAuthor(event.target.value)}
+        />
+        <PasteArea
+          value={pasteValue}
+          onChange={(event) => setPasteValue(event.target.value)}
+        />
+      </InputContainer>
+      <OptionsContainer>
+        <SelectTime
+          value={expireTime}
+          onChange={(event) => setExpireTime(parseInt(event.target.value))}
+        ></SelectTime>
+        <EncryptCheckbox
+          value={isEncrypted}
+          onChange={() => setIsEncrypted(!isEncrypted)}
+        />
+        <PasswordInput
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+        />
+        <SelectOneTime
+          disabled={isEmbeddable}
+          checked={oneTimeView}
+          onChange={() => setOneTimeView(!oneTimeView)}
+        />
+        <EmbedCheck
+          disabled={oneTimeView}
+          checked={isEmbeddable}
+          onChange={(event) => setIsEmbeddable(event.target.checked)}
+        />
+      </OptionsContainer>
+      <ButtonContainer>
+        <SubmitButton
+          onClick={() =>
+            doPost({
+              oneTimeView,
+              isEmbeddable,
+              value: pasteValue,
+              author,
+              expireTime,
+              password,
+              isEncrypted,
+            })
+          }
+          disabled={
+            !pasteValue || !author || loading || (!password && isEncrypted)
+          }
+        />
+        <RandomButton onClick={handleRandomClick} />
+      </ButtonContainer>
       {loading && <Loading />}
       {error && <Alert>Can not post paste! Please try again.</Alert>}
     </FullContainer>
