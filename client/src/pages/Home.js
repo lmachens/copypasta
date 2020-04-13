@@ -1,7 +1,6 @@
 import React from 'react';
 import Logo from '../icons/Logo';
 import PasteArea from '../components/PasteArea';
-import styled from '@emotion/styled';
 import SubmitButton from '../components/SubmitButton';
 import Loading from '../components/Loading';
 import Alert from '../components/notifications/Alert';
@@ -17,14 +16,6 @@ import EncryptCheckbox from '../components/EncryptCheckbox';
 import PasswordInput from '../components/PasswordInput';
 import SelectOneTime from '../components/SelectOneTime';
 import EmbedCheck from '../components/EmbedCheck';
-
-const PasteAreaStyled = styled(PasteArea)`
-  margin: 20px;
-`;
-
-const RandomButtonStyled = styled(RandomButton)`
-  margin-top: 12px;
-`;
 
 function Home({ onPaste }) {
   const [pasteValue, setPasteValue] = React.useState('');
@@ -56,7 +47,7 @@ function Home({ onPaste }) {
         value={author}
         onChange={(event) => setAuthor(event.target.value)}
       />
-      <PasteAreaStyled
+      <PasteArea
         value={pasteValue}
         onChange={(event) => setPasteValue(event.target.value)}
       />
@@ -98,7 +89,7 @@ function Home({ onPaste }) {
           !pasteValue || !author || loading || (!password && isEncrypted)
         }
       />
-      <RandomButtonStyled onClick={handleRandomClick} />
+      <RandomButton onClick={handleRandomClick} />
       {loading && <Loading />}
       {error && <Alert>Can not post paste! Please try again.</Alert>}
     </FullContainer>

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 const SelectBox = styled.select`
   display: block;
-  width: 300px;
+  width: 100%;
   margin: 5px auto;
   font-size: 14px;
 `;

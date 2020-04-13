@@ -5,9 +5,9 @@ const TextArea = styled.textarea`
   border: 5px solid #ab9df2;
   border-radius: 15px;
   box-shadow: 0px 5px 0px #b4b4b4;
-  min-height: 200px;
-  min-width: 500px;
+  width: 100%;
   padding: 20px;
+  resize: vertical;
 `;
 
 export default function PasteArea(props) {

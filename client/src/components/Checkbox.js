@@ -6,7 +6,6 @@ const Label = styled.label`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 10px;
   color: ${(props) => (props.disabled ? '#666' : 'inherit')};
 `;
 

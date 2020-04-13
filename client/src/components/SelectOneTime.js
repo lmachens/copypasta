@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Checkbox from './Checkbox';
 
 const Container = styled.div`
-  margin: 15px 0;
   text-align: center;
 `;
 
