@@ -3,6 +3,14 @@ import Button from './Button';
 import PropTypes from 'prop-types';
 import { sendPastaViaMail } from '../api/pastes';
 import Input from './Input';
+import styled from '@emotion/styled';
+
+const Form = styled.form`
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: center;
+  margin-bottom: 10px;
+`;
 
 function EmailForm({ pasteId }) {
   const [email, setEmail] = React.useState('');
@@ -16,7 +24,7 @@ function EmailForm({ pasteId }) {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <Input
         placeholder="Enter the email of your recipient"
         value={email}
@@ -29,7 +37,7 @@ function EmailForm({ pasteId }) {
           📧
         </span>
       </Button>
-    </form>
+    </Form>
   );
 }
 
