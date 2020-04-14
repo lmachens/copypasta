@@ -9,8 +9,8 @@
     "dev-server": "nodemon index.js",
     "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run dev-client\"",
     "start": "node index.js",
-    "test-watch": "cd client && npm test",
-    "test": "cd client && npm test -- --watchAll=false"
+    "test-watch": "concurrently --kill-others-on-fail \"jest --watch\" \"cd client && npm test\"",
+    "test": "jest && cd client && npm test -- --watchAll=false"
   },
   "repository": {
     "type": "git",
@@ -29,12 +29,14 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
+    "@shelf/jest-mongodb": "^1.1.5",
     "concurrently": "^5.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.10.1",
     "eslint-plugin-prettier": "^3.1.2",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.3",
+    "jest": "^25.3.0",
     "lint-staged": "^10.1.2",
     "nodemon": "^2.0.2",
     "prettier": "^2.0.4"
