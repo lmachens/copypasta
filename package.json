@@ -8,7 +8,10 @@
     "dev-client": "cd client && npm start",
     "dev-server": "nodemon index.js",
     "dev": "concurrently --kill-others-on-fail \"npm run dev-server\" \"npm run dev-client\"",
-    "start": "node index.js"
+    "start": "node index.js",
+    "test-client": "cd client && npm test",
+    "test-server": "echo \"Server tests not implemented yet\"",
+    "test": "npm run test-server && npm run test-client"
   },
   "repository": {
     "type": "git",
