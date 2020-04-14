@@ -3,7 +3,6 @@ import styled from '@emotion/styled';
 const FullContainer = styled.div`
   display: flex;
   flex-flow: row wrap;
-  align-items: stretch;
   justify-content: center;
   min-height: 100vh;
   max-width: 850px;
