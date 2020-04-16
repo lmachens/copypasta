@@ -40,6 +40,7 @@
     "babel-plugin-macros": "^2.8.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "jest-emotion": "^10.0.32",
     "react-test-renderer": "^16.13.1",
     "require-context.macro": "^1.2.2"
   },

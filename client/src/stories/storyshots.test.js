@@ -1,5 +1,9 @@
-import initStoryshots from '@storybook/addon-storyshots';
+import initStoryshots, {
+  multiSnapshotWithOptions,
+} from '@storybook/addon-storyshots';
+import { createSerializer } from 'jest-emotion';
 
 initStoryshots({
-  /* configuration options */
+  test: multiSnapshotWithOptions(),
+  snapshotSerializers: [createSerializer()],
 });

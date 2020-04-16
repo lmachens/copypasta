@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots PasteArea Default 1`] = `
+.emotion-1 {
+  margin: 10px;
+}
+
+.emotion-0 {
+  border: 5px solid #ab9df2;
+  border-radius: 15px;
+  box-shadow: 0px 5px 0px #b4b4b4;
+  -webkit-box-flex: 1;
+  -webkit-flex-grow: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  padding: 20px;
+  margin-top: 10px;
+  resize: vertical;
+}
+
+<div
+  className="emotion-1"
+>
+  <textarea
+    className="emotion-0"
+    placeholder="text goes here..."
+  />
+</div>
+`;
