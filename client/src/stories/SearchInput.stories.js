@@ -1,5 +1,6 @@
 import React from 'react';
 import SearchInput from '../components/SearchInput';
+import useThrottledState from '../hooks/useThrottledState';
 
 export default {
   title: 'SearchInput',
@@ -14,17 +15,10 @@ function waitFor(delay) {
 
 export const Author = () => {
   const [value, setValue] = React.useState('');
+  const throttledValue = useThrottledState(value, 300);
   const [searchResults, setSearchResults] = React.useState([]);
 
-  async function handleChange(event) {
-    const value = event.target.value;
-    setValue(value);
-
-    // const authors = await fetch(
-    //   `http://localhost:8080/api/authors?q=${value}`
-    // ).then((response) => response.json());
-    // setSearchResults(authors);
-
+  async function fetchSearchResults() {
     const delay = Math.floor(Math.random() * 1000) + 200;
     console.log('Request authors', value, delay);
     await waitFor(delay);
@@ -32,6 +26,15 @@ export const Author = () => {
     const filteredAuthors = authors.filter((author) => author.match(regExp));
     setSearchResults(filteredAuthors);
   }
+
+  async function handleChange(event) {
+    const value = event.target.value;
+    setValue(value);
+  }
+
+  React.useEffect(() => {
+    fetchSearchResults();
+  }, [throttledValue]);
 
   return (
     <SearchInput
