@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Storyshots SearchInput Author 1`] = `
+.emotion-0 {
+  margin: 10px;
+}
+
+<div
+  className="emotion-0"
+>
+  <div>
+    <input
+      onChange={[Function]}
+      type="search"
+      value=""
+    />
+    <div />
+  </div>
+</div>
+`;
