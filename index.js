@@ -7,6 +7,7 @@ const { createIndexes } = require('./lib/models/pastes');
 const pastes = require('./lib/routes/pastes');
 const email = require('./lib/routes/email');
 const reports = require('./lib/routes/reports');
+const authors = require('./lib/routes/authors');
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/api/pastes', pastes);
 app.use('/api/email', email);
 app.use('/api/reports', reports);
+app.use('/api/authors', authors);
 
 if (process.env.NODE_ENV === 'production') {
   // Serve any static files
