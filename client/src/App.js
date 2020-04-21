@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Paste from './pages/Paste';
 import Confirmation from './components/notifications/Confirmation';
 import { copyToClipboard } from './utils/clipboard';
+import Header from './components/Header';
+import UserInfo from './components/UserInfo';
+import AuthProvider from './contexts/auth/AuthProvider';
 
 function copyPasteURL(pasteId) {
   const pasteURL = `${window.location.origin}/${pasteId}`;
@@ -21,21 +24,26 @@ function App() {
 
   return (
     <div>
-      <GlobalStyles />
-      {showConfirmation && (
-        <Confirmation>URL copied to your clipboard!</Confirmation>
-      )}
-      <Router>
-        <Route exact path="/">
-          <Home onPaste={onPaste} />
-        </Route>
-        <Route exact path="/:pasteId">
-          <Paste />
-        </Route>
-        <Route exact path="/embed/:pasteId">
-          <Paste embedded />
-        </Route>
-      </Router>
+      <AuthProvider>
+        <GlobalStyles />
+        {showConfirmation && (
+          <Confirmation>URL copied to your clipboard!</Confirmation>
+        )}
+        <Header>
+          <UserInfo />
+        </Header>
+        <Router>
+          <Route exact path="/">
+            <Home onPaste={onPaste} />
+          </Route>
+          <Route exact path="/:pasteId">
+            <Paste />
+          </Route>
+          <Route exact path="/embed/:pasteId">
+            <Paste embedded />
+          </Route>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }
