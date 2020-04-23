@@ -5,8 +5,6 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Paste from './pages/Paste';
 import Confirmation from './components/notifications/Confirmation';
 import { copyToClipboard } from './utils/clipboard';
-import Header from './components/Header';
-import UserInfo from './components/UserInfo';
 import AuthProvider from './contexts/auth/AuthProvider';
 
 function copyPasteURL(pasteId) {
@@ -29,9 +27,6 @@ function App() {
         {showConfirmation && (
           <Confirmation>URL copied to your clipboard!</Confirmation>
         )}
-        <Header>
-          <UserInfo />
-        </Header>
         <Router>
           <Route exact path="/">
             <Home onPaste={onPaste} />

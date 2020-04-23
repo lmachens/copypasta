@@ -10,7 +10,6 @@ import PasteBody from '../components/PasteBody';
 import WarningButton from '../components/WarningButton';
 import useDeletePaste from '../hooks/useDeletePaste';
 import { useParams } from 'react-router-dom';
-import LogoutButton from '../components/LogoutButton';
 
 const Content = styled.div`
   overflow: auto;
@@ -57,7 +56,6 @@ function Paste({ embedded }) {
               )}
             </>
           )}
-          <LogoutButton />
         </Content>
       )}
     </FullContainer>
