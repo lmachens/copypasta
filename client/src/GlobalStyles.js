@@ -10,8 +10,10 @@ function GlobalStyle() {
         *:after {
           box-sizing: border-box;
         }
-        body {
+        html {
           font-size: 16px;
+        }
+        body {
           margin: 0;
           font-family: RobotoMono-Regular, Roboto Mono;
         }
